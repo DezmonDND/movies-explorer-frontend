@@ -20,13 +20,16 @@
 
 .footer__info {
     display: flex;
-    margin-top: 20px;
+    margin-top: 9px;
     justify-content: space-between;
     align-items: center;
 }
 
 .footer__date {
     margin: 0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15.73px;
 }
 
 .footer__links {

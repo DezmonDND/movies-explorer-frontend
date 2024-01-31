@@ -24,7 +24,7 @@
     gap: 20px;
     padding-bottom: 19px;
     margin: 0;
-    margin-top: 50px;
+    margin-top: 49px;
 }
 
 .portfolio__link {
@@ -47,6 +47,6 @@
 
 .portfolio__link-image {
     display: flex;
-    min-width: 29px;
+    min-width: 20px;
     object-fit: contain;
 }

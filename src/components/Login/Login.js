@@ -1,6 +1,6 @@
 import React from "react";
-import './Login.css';
 import '../Register/Register.css';
+import './Login.css';
 import logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ function Login() {
                     ></input>
                     <span className="profilePassword-error profile__input-error">Что-то пошло не так...</span>
                 </div>
-                <div className="form__buttons">
+                <div className="form__buttons_login form__buttons">
                     <span className="form__request-error">Что-то пошло не так...</span>
                     <button className="form__button" type="submit">Войти</button>
                     <div className="form__links">

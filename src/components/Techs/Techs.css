@@ -1,6 +1,6 @@
 .techs {
     background-color: #F5F5F5;
-    padding: 100px 70px;
+    padding: 137px 70px;
     letter-spacing: -.04em;
 }
 
@@ -16,6 +16,7 @@
     line-height: 26.63px;
     border-bottom: 1px solid black;
     padding-bottom: 23px;
+    letter-spacing: -.04em;
 
 }
 
@@ -25,6 +26,7 @@
     margin-top: 90px;
     margin-bottom: 100px;
     align-items: center;
+    
 }
 
 .techs__subtitle {
@@ -33,6 +35,7 @@
     font-size: 50px;
     line-height: 58px;
     margin-bottom: 26px;
+    letter-spacing: -.04em;
 }
 
 .techs__subtitle-description {
@@ -42,6 +45,7 @@
     line-height: 20px;
     max-width: 460px;
     text-align: center;
+    letter-spacing: -.04em;
 }
 
 .techs__skiils {

@@ -6,6 +6,9 @@
 .checkbox__title {
     margin: 0;
     margin-left: 14px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
 }
 
 .checkbox__switcher {
