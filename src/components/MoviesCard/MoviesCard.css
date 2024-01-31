@@ -1,0 +1,56 @@
+.movie {
+    display: flex;
+    flex-direction: column;
+    max-width: 270px;
+    min-height: 32px;
+}
+
+.movie__trailer-link {
+    text-decoration: none;
+
+}
+
+.movie__image {
+    max-width: 270px;
+    max-height: 151px;
+}
+
+.movie__info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 13px;
+
+}
+
+.movie__title {
+    max-width: 226px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15.73px;
+    margin: 0;
+
+}
+
+.movie__length {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13.31px;
+    color: #A0A0A0;
+    margin: 0;
+    margin-top: 6px;
+
+}
+
+.movie__like {
+    all: unset;
+    background-image: url(../../images/like_btn_active.png);
+    background-size: contain;
+    background-position: center;
+    border: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+}

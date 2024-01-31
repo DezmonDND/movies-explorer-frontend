@@ -3,7 +3,11 @@ import './FilterCheckbox.css';
 
 function FilterCheckbox() {
     return (
-        <section className="" id=""></section>
+        <div className="checkbox">
+            <input type="checkbox" id="checkbox" class="checkbox__switcher"></input>
+            <label for="checkbox"></label>
+            <p className="checkbox__title">Короткометражки</p>
+        </div>
     );
 }
 
