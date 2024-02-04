@@ -1,12 +1,15 @@
 .form__button_type-login {
     padding-left: 176px;
     padding-right: 176px;
+}
+
+.form__request-error_type-login {
     margin-top: 69px;
 }
 
 @media screen and (max-width: 768px) {
-    .form__buttons_login {
-        margin-top: 95px;
+    .form__request-error_type-login {
+        margin-top: 69px;
     }
 }
 
