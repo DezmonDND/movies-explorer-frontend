@@ -8,6 +8,7 @@ import Login from '../Login/Login'
 import Register from '../Register/Register'
 import Main from '../Main/Main';
 import Profile from '../Profile/Profile';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
         <Route path='/movies' element={<Movies />}></Route>
         <Route path='/saved-movies' element={<SavedMovies />}></Route>
         <Route path='/profile' element={<Profile />}></Route>
+        <Route path='*' element={<NotFoundPage />}></Route>
       </Routes>
       {['/', '/movies', '/saved-movies'].includes(location.pathname) && <Footer></Footer>}
     </div>

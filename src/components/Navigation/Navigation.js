@@ -1,22 +1,24 @@
 import React from "react";
 import './Navigation.css';
 import profileIconBtn from "../../images/profile.png"
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function Navigation() {
+    const location = useLocation();
+
     return (
         <nav className="navigation">
             <div className="navigation__movies">
-                <Link className="navigation__link" to="/movies">Фильмы</Link>
-                <Link className="navigation__link" to="/saved-movies">Сохранённые фильмы</Link>
+                {['/movies', '/saved-movies'].includes(location.pathname) && <NavLink className={`navigation__link ${location.pathname === '/movies' ? "navigation__link_active" : ""}`} to="/movies">Фильмы</NavLink>}
+                {['/movies', '/saved-movies'].includes(location.pathname) && <NavLink className={`navigation__link ${location.pathname === '/movies' ? "navigation__link_active" : ""}`} to="/saved-movies">Сохранённые фильмы</NavLink>}
             </div>
             <div className="navigation__profile">
-                <Link className="navigation__link" to="/signup">Регистрация</Link>
-                <Link className="navigation__link navigation__link_login" to="/signin">Войти</Link>
-                <Link className="navigation__link navigation__link_profile" to="/profile">
+                {['/'].includes(location.pathname) && <NavLink className={`navigation__link `} to="/signup">Регистрация</NavLink>}
+                {['/'].includes(location.pathname) && <NavLink className={`navigation__link navigation__link_login `} to="/signin">Войти</NavLink>}
+                {['/movies', '/saved-movies'].includes(location.pathname) && <NavLink className={`navigation__link navigation__link_profile ${location.pathname === '/movies' || 'saved-movies' ? 'navigation__link_profile_active' : ""}`} to="/profile">
                     <span className="navigation__profile-title">Аккаунт</span>
                     <img className="navigation__profile-icon" src={profileIconBtn} alt="Иконка профиля"></img>
-                </Link>
+                </NavLink>}
             </div>
         </nav>
     );

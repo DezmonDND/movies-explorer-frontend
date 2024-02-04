@@ -5,12 +5,10 @@ import AboutProject from "../AboutProject/AboutProject";
 import Techs from '../Techs/Techs'
 import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio"
-import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function Main() {
     return (
         <section className="main">
-            {/* <NotFoundPage></NotFoundPage> */}
             <Promo></Promo>
             <AboutProject></AboutProject>
             <Techs></Techs>
