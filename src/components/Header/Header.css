@@ -7,6 +7,10 @@
     width: 100%;
 }
 
+.header_logged {
+    background: #FFFFFF;
+}
+
 .header__container {
     display: flex;
     justify-content: space-between;
@@ -36,6 +40,18 @@
     height: 44px;
     background: none;
     background-image: url(../../images/burger_menu-icon.png);
+    background-position: center;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.header__burger-btn_white {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background: none;
+    background-image: url(../../images/burger_menu-icon_white.png);
     background-position: center;
     background-size: cover;
     border: none;

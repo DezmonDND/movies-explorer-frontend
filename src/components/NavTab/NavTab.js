@@ -18,7 +18,7 @@ function NavTab({ isOpen, onClose }) {
                 <Link className="navtab__link" to="/">Главная</Link>
                 <Link className="navtab__link" to="/movies">Фильмы</Link>
                 <Link className="navtab__link" to="/saved-movies">Сохранённые фильмы</Link>
-                <Link className="navtab__link navtab__link_profile" to="/profile" target="blank">
+                <Link className="navtab__link navtab__link_profile" to="/profile">
                     <span className="navtab__profile-title">Аккаунт</span>
                     <img className="navtab__profile-icon" src={profileIconBtn} alt="Иконка профиля"></img>
                 </Link>

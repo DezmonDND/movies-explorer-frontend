@@ -1,16 +1,18 @@
 .register {
     display: flex;
-    flex-direction: column;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    max-width: 1280px;
+    margin: 70px auto 70px;
+    max-width: 396px;
     width: 100%;
-    align-items: center;
+    justify-content: center;
+
 }
 
 .register__container {
+    display: flex;
+    flex-direction: column;
     max-width: 396px;
-    padding: 56px 30px 30px;
+    width: 100%;
+    padding: 0 30px;
 }
 
 .register__logo {
@@ -25,7 +27,7 @@
 
 .register__title {
     margin: 0;
-    margin-top: 40px;
+    margin-top: 36px;
     margin-bottom: 40px;
     font-weight: 500;
     font-size: 24px;
@@ -128,16 +130,31 @@
     transition: 0.5s;
 }
 
+@media screen and (max-width: 768px) {
+    .register {
+        margin-top: 232px;
+    }
+
+    .form__buttons {
+        margin-top: 96px;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .register {
-        padding: 0;
+        margin-top: 0;
+
+    }
+
+    .register__title {
+        max-width: 260px;
+        text-align: center;
     }
 
     .register__container {
-        padding: 56px 30px 30px;
-        display: flex;
-        flex-direction: column;
         align-items: center;
+        max-width: 260px;
+        margin-top: 54px;
     }
 
     .form__button {
@@ -160,6 +177,7 @@
     .form__buttons {
         max-width: 260px;
         width: 100%;
+        margin-top: 183px;
     }
 
     .form__link-text {

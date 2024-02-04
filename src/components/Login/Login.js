@@ -30,9 +30,9 @@ function Login() {
                     ></input>
                     <span className="profilePassword-error profile__input-error">Что-то пошло не так...</span>
                 </div>
-                <div className="form__buttons_login form__buttons">
+                <div className="form__buttons form__buttons_login">
                     <span className="form__request-error">Что-то пошло не так...</span>
-                    <button className="form__button" type="submit">Войти</button>
+                    <button className="form__button form__button_type-login" type="submit">Войти</button>
                     <div className="form__links">
                         <p className="form__link-text">Ещё не зарегистрированы?</p>
                         <Link className="form__link" to="/signup">Регистрация</Link>

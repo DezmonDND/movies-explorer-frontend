@@ -25,6 +25,7 @@ function Profile() {
                         ></input>
                         <span className="profileEmail-error profile__input-error"></span>
                     </div>
+                    <span className="profile__request-error">При обновлении профиля произошла ошибка.</span>
                     <div className="profile__buttons">
                         <button className="profile__button profile__button_edit" type="submit">Редактировать</button>
                         <button className="profile__button profile__button-exit" type="submit">Выйти из аккаунта</button>

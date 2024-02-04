@@ -9,7 +9,7 @@ function Promo() {
                 <div className="promo__about">
                     <h1 className="promo__title">Учебный проект студента&nbsp;факультета Веб-разработки.</h1>
                     <p className="promo__text">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-                    <a className="promo__link" href="/">Узнать больше</a>
+                    <a className="promo__link" href="https://github.com/DezmonDND" target="blank">Узнать больше</a>
                 </div>
                 <img className="promo__logo" src={promoLogo} alt="Логотип земля"></img>
             </div>
