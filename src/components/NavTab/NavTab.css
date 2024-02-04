@@ -1,0 +1,127 @@
+.navtab {
+    position: fixed;
+    visibility: hidden;
+    inset: 0 0;
+    transition: visibility 0s, opacity 0.3s;
+    cursor: pointer;
+}
+
+.navtab_menu-open {
+    visibility: visible;
+    transition: visibility 0s, opacity 0.3s;
+    z-index: 1;
+}
+
+.navtab__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 520px;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    background: #FFFFFF;
+    transform: translateX(min(520px, 100%));
+    transition: transform 0.3s 0s;
+}
+
+.navtab_menu-open .navtab__container {
+    transform: translateX(0);
+    transition: transform 0.3s 0.1s
+}
+
+.navtab__burger-btn {
+    display: flex;
+    border: none;
+    align-self: flex-end;
+    padding: 0;
+    margin-right: 22.44px;
+    margin-top: 22.44px;
+    margin-bottom: 105.44px;
+    cursor: pointer;
+}
+
+.navtab__burger-btn:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.navtab__burger {
+    display: flex;
+    background-image: url(../../images/burger__close-btn.png);
+    background-color: #FFFFFF;
+    background-position: center;
+    background-size: cover;
+}
+
+.navtab__burger:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.navtab__link {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000000;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.78px;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.navtab__link:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.navtab__link:last-of-type {
+    margin-bottom: 0;
+}
+
+.navtab__link_profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50px;
+    color: #000000;
+    width: 100px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    box-shadow: 0 3px 14px 0 #d4d4d4;
+    position: fixed;
+    bottom: 90px;
+}
+
+.navtab__profile-title {
+    margin-left: 11px;
+}
+
+.navtab__profile-icon {
+    margin: 3px;
+    background-color: #FFFFFF;
+    border-radius: 50px;
+    padding: 7.5px;
+    box-shadow: 0 3px 14px 0 #d4d4d4;
+}
+
+@media screen and (max-width: 500px) {
+    .navtab__link_profile {
+        bottom: 46px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .navtab__link_profile {
+        bottom: 130px;
+    }
+
+    .navtab__burger-btn {
+        margin-bottom: 90px;
+    }
+
+    .navtab__link {
+        margin-bottom: 25px;
+    }
+}

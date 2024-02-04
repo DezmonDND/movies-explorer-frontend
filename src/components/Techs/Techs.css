@@ -17,7 +17,6 @@
     border-bottom: 1px solid black;
     padding-bottom: 23px;
     letter-spacing: -.04em;
-
 }
 
 .techs__descriptions {
@@ -26,7 +25,6 @@
     margin-top: 90px;
     margin-bottom: 100px;
     align-items: center;
-    
 }
 
 .techs__subtitle {
@@ -54,7 +52,6 @@
     gap: 10px;
     align-self: center;
     padding: 0;
-    
 }
 
 .techs__skill {
@@ -69,4 +66,85 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .techs {
+        padding: 90px 50px;
+    }
+
+    .techs__descriptions {
+        margin-top: 78px;
+        margin-bottom: 84px;
+    }
+
+    .techs__subtitle {
+        margin-bottom: 23px;
+    }
+
+    .techs__subtitle-description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .techs__skill {
+        font-size: 12px;
+        line-height: 14.52px;
+        min-height: 57px;
+        min-width: 84px;
+    }
+
+}
+
+@media screen and (max-width: 680px) {
+    .techs__skiils {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .techs {
+        padding: 70px 14px;
+    }
+
+    .techs__title {
+        display: flex;
+        font-size: 18px;
+        line-height: 21.78px;
+        padding-bottom: 27px;
+        max-width: 284px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    .techs__subtitle {
+        font-size: 30px;
+        line-height: 36.61px;
+        margin-bottom: 24px;
+    }
+
+    .techs__subtitle-description {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .techs__skiils {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px 10px;
+    }
+
+    .techs__descriptions {
+        margin-top: 60px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 319px) {
+    .techs__skiils {
+        grid-template-columns: auto;
+        gap: 10px;
+    }
 }

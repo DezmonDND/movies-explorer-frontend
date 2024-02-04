@@ -43,3 +43,14 @@
     line-height: 16.94px;
     text-align: center;
 }
+
+.error-page__link:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 400px) {
+    .error-page__text {
+        margin-bottom: 184px;
+    }
+}

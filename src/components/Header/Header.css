@@ -1,12 +1,10 @@
 .header {
-
     background-color: #073042;
     display: flex;
     align-items: center;
     justify-content: center;
     max-width: 1280px;
     width: 100%;
-
 }
 
 .header__container {
@@ -17,18 +15,52 @@
     padding-left: 70px;
     padding-right: 70px;
     width: 100%;
-
+    align-items: center;
 }
 
 .header__logo {
-   display: flex;
-    
-
+    display: flex;
+    width: 38px;
+    height: 38px;
 }
 
 .header__link {
     max-width: 38px;
     display: flex;
     text-decoration: none;
+}
 
+.header__burger-btn {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background: none;
+    background-image: url(../../images/burger_menu-icon.png);
+    background-position: center;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.header__logo:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+    .header__container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .header__burger-btn {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header__container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
 }

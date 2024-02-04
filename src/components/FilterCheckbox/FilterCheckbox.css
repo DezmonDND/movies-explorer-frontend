@@ -15,6 +15,11 @@
     display: none;
 }
 
+.checkbox:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
 .checkbox__switcher+label {
     display: inline-block;
     width: 34px;
@@ -43,4 +48,26 @@
 
 .checkbox__switcher:checked+label:after {
     transform: translateX(18px);
+}
+
+@media screen and (max-width: 768px) {
+    .checkbox {
+        flex-direction: row-reverse;
+        align-self: self-end;
+    }
+
+    .checkbox__title {
+        margin-left: 0;
+        margin-right: 18px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .checkbox {
+        align-self: center;
+    }
+
+    .checkbox__title {
+        font-size: 11px;
+    }
 }

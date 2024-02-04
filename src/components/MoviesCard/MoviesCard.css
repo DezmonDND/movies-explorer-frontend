@@ -7,7 +7,11 @@
 
 .movie__trailer-link {
     text-decoration: none;
+}
 
+.movie__trailer-link:hover {
+    opacity: 0.8;
+    transition: 0.5s;
 }
 
 .movie__image {
@@ -20,8 +24,7 @@
     justify-content: space-between;
     margin-top: 10px;
     border-bottom: 1px solid #E8E8E8;
-    padding-bottom: 16px;
-
+    padding-bottom: 14px;
 }
 
 .movie__title {
@@ -30,7 +33,7 @@
     font-size: 13px;
     line-height: 15.73px;
     margin: 0;
-
+    margin-right: 20px;
 }
 
 .movie__length {
@@ -40,7 +43,6 @@
     color: #A0A0A0;
     margin: 0;
     margin-top: 6px;
-
 }
 
 .movie__like {
@@ -49,8 +51,47 @@
     background-size: contain;
     background-position: center;
     border: none;
-    width: 24px;
-    height: 24px;
+    min-width: 24px;
+    max-height: 24px;
     cursor: pointer;
+}
 
+.movie__like:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 1279px) {
+    .movie {
+        max-width: 339px;
+    }
+
+    .movie__title {
+        max-width: 295px;
+    }
+
+    .movie__image {
+        max-width: 339px;
+        max-height: 190px;
+        width: 100%;
+    }
+
+    .movie__info {
+        margin-top: 14px;
+        padding-bottom: 29px;
+    }
+
+    .movie__trailer-link {
+        max-height: 190px;
+    }
+}
+
+@media screen and (max-width: 419px) {
+    .movie__trailer-link {
+        max-height: 168px;
+    }
+
+    .movie__info {
+        padding-bottom: 13px;
+    }
 }

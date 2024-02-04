@@ -6,12 +6,11 @@
     max-width: 1280px;
     width: 100%;
     align-items: center;
-
 }
 
 .register__container {
     max-width: 396px;
-    width: 100%;
+    padding: 56px 30px 30px;
 }
 
 .register__logo {
@@ -19,7 +18,10 @@
     width: 100%;
 }
 
-.register__picture {}
+.register__logo:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
 
 .register__title {
     margin: 0;
@@ -52,7 +54,6 @@
     border-bottom: 1px solid #E8E8E8;
     padding: 0;
     padding-bottom: 10px;
-
 }
 
 .profile__input-error {
@@ -94,6 +95,11 @@
     text-align: center;
 }
 
+.form__button:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
 .form__links {
     display: flex;
     justify-content: center;
@@ -106,6 +112,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 16.94px;
+    color: #A0A0A0;
 }
 
 .form__link {
@@ -114,4 +121,54 @@
     line-height: 16.94px;
     text-decoration: none;
     color: #3456F3;
+}
+
+.form__link:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 500px) {
+    .register {
+        padding: 0;
+    }
+
+    .register__container {
+        padding: 56px 30px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form__button {
+        padding: 15px 0;
+        max-width: 260px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .form__fieldset {
+        max-width: 260px;
+        width: 100%;
+    }
+
+    .register__title {
+        margin-top: 50px;
+        margin-bottom: 80px;
+    }
+
+    .form__buttons {
+        max-width: 260px;
+        width: 100%;
+    }
+
+    .form__link-text {
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .form__link {
+        font-size: 12px;
+        line-height: 14.52px;
+    }
 }

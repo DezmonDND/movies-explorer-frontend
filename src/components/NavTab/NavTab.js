@@ -1,9 +1,29 @@
 import React from "react";
 import './NavTab.css';
+import { Link } from "react-router-dom";
+import profileIconBtn from "../../images/profile.png"
+import closeBtn from "../../images/burger__close-btn.png"
 
-function NavTab() {
+function NavTab({ isOpen, onClose }) {
     return (
-        <section className="" id=""></section>
+        <div className={`navtab ${isOpen ? 'navtab_menu-open' : ''}`}>
+            <div className="navtab__container">
+                <button
+                    className="navtab__burger-btn"
+                    type="button"
+                    onClick={onClose}
+                >
+                    <img className="navtab__burger" src={closeBtn} alt="Крестик"></img>
+                </button>
+                <Link className="navtab__link" to="/">Главная</Link>
+                <Link className="navtab__link" to="/movies">Фильмы</Link>
+                <Link className="navtab__link" to="/saved-movies">Сохранённые фильмы</Link>
+                <Link className="navtab__link navtab__link_profile" to="/profile" target="blank">
+                    <span className="navtab__profile-title">Аккаунт</span>
+                    <img className="navtab__profile-icon" src={profileIconBtn} alt="Иконка профиля"></img>
+                </Link>
+            </div>
+        </div>
     );
 }
 
