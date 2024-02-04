@@ -39,7 +39,7 @@
     width: 44px;
     height: 44px;
     background: none;
-    background-image: url(../../images/burger_menu-icon.png);
+    background-image: url(../../images/burger_menu-icon.svg);
     background-position: center;
     background-size: cover;
     border: none;
@@ -51,7 +51,7 @@
     width: 44px;
     height: 44px;
     background: none;
-    background-image: url(../../images/burger_menu-icon_white.png);
+    background-image: url(../../images/burger_menu-icon_white.svg);
     background-position: center;
     background-size: cover;
     border: none;

@@ -48,7 +48,7 @@
 
 .navtab__burger {
     display: flex;
-    background-image: url(../../images/burger__close-btn.png);
+    background-image: url(../../images/burger__close-btn.svg);
     background-color: #FFFFFF;
     background-position: center;
     background-size: cover;

@@ -1,8 +1,8 @@
 import React from "react";
 import './NavTab.css';
 import { Link } from "react-router-dom";
-import profileIconBtn from "../../images/profile.png"
-import closeBtn from "../../images/burger__close-btn.png"
+import profileIconBtn from "../../images/profile.svg"
+import closeBtn from "../../images/burger__close-btn.svg"
 
 function NavTab({ isOpen, onClose }) {
     return (

@@ -1,6 +1,6 @@
 import React from "react";
 import './Navigation.css';
-import profileIconBtn from "../../images/profile.png"
+import profileIconBtn from "../../images/profile.svg"
 import { NavLink, useLocation } from "react-router-dom";
 
 function Navigation() {
