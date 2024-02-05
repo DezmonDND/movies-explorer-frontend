@@ -8,7 +8,7 @@
 
 .promo__container {
     display: flex;
-    padding: 70px 75px;
+    padding: 72px 70px;
     width: 100%;
     justify-content: space-between;
 }
@@ -16,6 +16,7 @@
 .promo__about {
     display: flex;
     flex-direction: column;
+    max-width: 640px;
     width: 100%;
 }
 
@@ -47,7 +48,7 @@
     line-height: 16px;
     color: #FFFFFF;
     text-decoration: none;
-    margin-top: 146px;
+    margin-top: 144px;
     border: 1px solid rgba(255, 255, 255, .6);
     border-radius: 3px;
     padding: 10px 20px;

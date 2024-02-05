@@ -49,13 +49,14 @@
     grid-template-rows: 36px 36px;
     text-align: center;
     margin: 0;
-    letter-spacing: -.04em;
+  
 }
 
 .about__timeline_time {
     display: flex;
     justify-content: center;
     align-items: center;
+    letter-spacing: -.04em;
 }
 
 .about__timeline_type {
@@ -64,6 +65,7 @@
     align-items: center;
     color: #A0A0A0;
     margin-top: 10px;
+    letter-spacing: -.04em;
 }
 
 .about__timeline_1-week {

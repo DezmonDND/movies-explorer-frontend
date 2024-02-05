@@ -77,6 +77,7 @@
 @media screen and (max-width: 320px) {
     .footer__container {
         padding: 79px 10px 20px;
+        letter-spacing: -.04em;
     }
 
     .footer__info {
