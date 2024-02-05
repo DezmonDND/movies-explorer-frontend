@@ -12,7 +12,6 @@
     grid-template-columns: auto auto auto auto;
     grid-template-rows: auto auto auto auto;
     gap: 37px 20px;
-
 }
 
 .movies__button-more {
@@ -55,14 +54,13 @@
     .movies__element {
         max-width: 339px;
         width: 100%;
-
     }
 }
 
 @media screen and (max-width: 419px) {
-.movies__section {
-    margin-top: 32px;
-}
+    .movies__section {
+        margin-top: 32px;
+    }
 
     .movies__list {
         max-width: 300px;

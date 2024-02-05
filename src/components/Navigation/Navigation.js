@@ -9,13 +9,13 @@ function Navigation() {
     return (
         <nav className="navigation">
             <div className="navigation__movies">
-                {['/movies', '/saved-movies'].includes(location.pathname) && <NavLink className={`navigation__link ${location.pathname === '/movies' ? "navigation__link_active" : ""}`} to="/movies">Фильмы</NavLink>}
-                {['/movies', '/saved-movies'].includes(location.pathname) && <NavLink className={`navigation__link ${location.pathname === '/movies' ? "navigation__link_active" : ""}`} to="/saved-movies">Сохранённые фильмы</NavLink>}
+                {['/movies', '/saved-movies', '/profile'].includes(location.pathname) && <NavLink className={`navigation__link ${location.pathname === '/movies' || '/saved-movies' || '/profile' ? "navigation__link_active" : ""}`} to="/movies">Фильмы</NavLink>}
+                {['/movies', '/saved-movies', '/profile'].includes(location.pathname) && <NavLink className={`navigation__link ${location.pathname === '/movies' || '/saved-movies' || '/profile' ? "navigation__link_active" : ""}`} to="/saved-movies">Сохранённые фильмы</NavLink>}
             </div>
             <div className="navigation__profile">
                 {['/'].includes(location.pathname) && <NavLink className={`navigation__link `} to="/signup">Регистрация</NavLink>}
                 {['/'].includes(location.pathname) && <NavLink className={`navigation__link navigation__link_login `} to="/signin">Войти</NavLink>}
-                {['/movies', '/saved-movies'].includes(location.pathname) && <NavLink className={`navigation__link navigation__link_profile ${location.pathname === '/movies' || 'saved-movies' ? 'navigation__link_profile_active' : ""}`} to="/profile">
+                {['/movies', '/saved-movies', '/profile'].includes(location.pathname) && <NavLink className={`navigation__link navigation__link_profile ${location.pathname === '/movies' || '/saved-movies' || '/profile' ? 'navigation__link_profile_active' : ""}`} to="/profile">
                     <span className="navigation__profile-title">Аккаунт</span>
                     <img className="navigation__profile-icon" src={profileIconBtn} alt="Иконка профиля"></img>
                 </NavLink>}
