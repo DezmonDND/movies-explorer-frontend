@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Login() {
     return (
         <main className="register">
-            <div className="register__container">
+            <form className="register__container">
                 <a className="register__logo" href="/">
                     <img className="register__picture" src={logo} alt="Логотип"></img>
                 </a>
@@ -18,6 +18,8 @@ function Login() {
                         className="form__input"
                         placeholder="pochta@yandex.ru"
                         name="profileEmail"
+                        required
+
                     ></input>
                     <span className="profileEmail-error profile__input-error">Что-то пошло не так...</span>
                 </div>
@@ -27,6 +29,9 @@ function Login() {
                         className="form__input"
                         placeholder="Ваш пароль"
                         name="profilePassword"
+                        required
+                        minLength={2}
+                        maxLength={30}
                     ></input>
                     <span className="profilePassword-error profile__input-error">Что-то пошло не так...</span>
                 </div>
@@ -38,7 +43,7 @@ function Login() {
                         <Link className="form__link" to="/signup">Регистрация</Link>
                     </div>
                 </div>
-            </div>
+            </form>
         </main>
     );
 }

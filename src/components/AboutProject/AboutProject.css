@@ -24,7 +24,6 @@
     margin-top: 70px;
     margin-bottom: 110px;
     gap: 49px;
-
 }
 
 .about__subtitle {
@@ -49,17 +48,16 @@
     grid-template-rows: 36px 36px;
     text-align: center;
     margin: 0;
-  
 }
 
-.about__timeline_time {
+.about__time {
     display: flex;
     justify-content: center;
     align-items: center;
     letter-spacing: -.04em;
 }
 
-.about__timeline_type {
+.about__type {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,13 +66,16 @@
     letter-spacing: -.04em;
 }
 
-.about__timeline_1-week {
+.about__time_1-week {
+    margin: 0;
     background-color: #2BE080;
+    height: 100%;
 }
 
-.about__timeline_4-week {
+.about__time_4-week {
+    margin: 0;
     background-color: #F2F2F2;
-
+    height: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -97,6 +98,7 @@
     }
 
     .about__timeline {
+        margin: 0;
         font-size: 14px;
         line-height: 16.94px;
         grid-template-columns: 21% 79%;
@@ -139,7 +141,7 @@
         grid-template-columns: 35% 65%;
     }
 
-    .about__timeline_type {
+    .about__type {
         margin-top: 0;
     }
 }

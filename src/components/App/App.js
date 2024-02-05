@@ -9,13 +9,18 @@ import Register from '../Register/Register'
 import Main from '../Main/Main';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { useState } from 'react';
 
 function App() {
   const location = useLocation();
+  const hasJwt = localStorage.getItem('jwt') ? true : false;
+  const { loggedIn, setLoggedIn } = useState(hasJwt);
 
   return (
     <div className="App">
-      {['/', '/movies', '/saved-movies', '/profile'].includes(location.pathname) && <Header></Header>}
+      {['/', '/movies', '/saved-movies', '/profile'].includes(location.pathname) && <Header
+        loggedIn={loggedIn}
+      ></Header>}
       <Routes>
         <Route path='/signin' element={<Login />}></Route>
         <Route path='/signup' element={<Register />}></Route>

@@ -17,10 +17,10 @@ function AboutProject() {
                     </div>
                 </div>
                 <div className="about__timeline">
-                    <p className="about__timeline about__timeline_time about__timeline_1-week">1 неделя</p>
-                    <p className="about__timeline about__timeline_time about__timeline_4-week">4 недели</p>
-                    <p className="about__timeline about__timeline_type">Back-end</p>
-                    <p className="about__timeline about__timeline_type">Front-end</p>
+                    <p className="about__time about__time_1-week">1 неделя</p>
+                    <p className="about__time about__time_4-week">4 недели</p>
+                    <p className="about__type">Back-end</p>
+                    <p className="about__type">Front-end</p>
                 </div>
             </div>
         </section>

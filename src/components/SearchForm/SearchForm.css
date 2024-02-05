@@ -25,6 +25,12 @@
     line-height: 33.89px;
     color: #A0A0A0;
     width: 100%;
+
+}
+
+.search__input:focus {
+    outline: 2px solid #3456F3;
+    border-radius: 2px;
 }
 
 .search__button {
@@ -39,6 +45,7 @@
     min-height: 34px;
     border-radius: 20px;
     cursor: pointer;
+    margin-left: 5px;
 }
 
 .search__button:hover {

@@ -8,13 +8,13 @@ import Portfolio from "../Portfolio/Portfolio"
 
 function Main() {
     return (
-        <section className="main">
+        <main className="main">
             <Promo></Promo>
             <AboutProject></AboutProject>
             <Techs></Techs>
             <AboutMe></AboutMe>
             <Portfolio></Portfolio>
-        </section>
+        </main>
     );
 }
 

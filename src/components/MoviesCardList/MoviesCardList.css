@@ -59,6 +59,7 @@
 
 @media screen and (max-width: 419px) {
     .movies__section {
+        align-items: center;
         margin-top: 32px;
     }
 

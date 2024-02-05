@@ -1,10 +1,10 @@
 .navigation {
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
-.navigation__movies {
+.navigation__logged {
     display: flex;
     width: 100%;
     align-items: center;
@@ -12,7 +12,7 @@
     gap: 16px;
 }
 
-.navigation__profile {
+.navigation__unlogged {
     display: flex;
     align-items: center;
     gap: 30px;
@@ -77,7 +77,11 @@
 }
 
 @media screen and (max-width: 768px) {
-    .navigation {
+    .navigation__logged {
+        display: none;
+    }
+
+    .navigation__link_profile {
         display: none;
     }
 }

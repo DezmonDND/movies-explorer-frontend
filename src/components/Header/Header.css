@@ -46,6 +46,11 @@
     cursor: pointer;
 }
 
+.header__burger-btn:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
 .header__burger-btn_white {
     display: none;
     width: 44px;

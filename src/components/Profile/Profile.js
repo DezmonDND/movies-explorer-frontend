@@ -1,5 +1,6 @@
 import React from "react";
 import './Profile.css';
+import { Link } from "react-router-dom";
 
 function Profile() {
     return (
@@ -13,6 +14,9 @@ function Profile() {
                             className="profile__input"
                             name="profileName"
                             placeholder="Виталий"
+                            required
+                            minLength={2}
+                            maxLength={30}
                         ></input>
                         <span className="profileName-error profile__input-error"></span>
                     </div>
@@ -22,13 +26,14 @@ function Profile() {
                             className="profile__input"
                             name="profileEmail"
                             placeholder="pochta@yandex.ru"
+                            required
                         ></input>
                         <span className="profileEmail-error profile__input-error"></span>
                     </div>
                     <span className="profile__request-error">При обновлении профиля произошла ошибка.</span>
                     <div className="profile__buttons">
                         <button className="profile__button profile__button_edit" type="submit">Редактировать</button>
-                        <button className="profile__button profile__button-exit" type="submit">Выйти из аккаунта</button>
+                        <Link className="profile__button profile__button-exit" to={'/'}>Выйти из аккаунта</Link>
                     </div>
                 </form>
             </div>

@@ -58,6 +58,11 @@
     width: 100%;
 }
 
+.profile__input:focus {
+    outline: 2px solid #000;
+    border-radius: 2px;
+}
+
 .profile__request-error {
     min-height: 12px;
     color: #FF3055;

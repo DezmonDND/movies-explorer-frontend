@@ -6,17 +6,20 @@ import { Link } from "react-router-dom";
 function Register() {
     return (
         <main className="register">
-            <div className="register__container">
-                <a className="register__logo" href="/">
-                    <img className="register__picture" src={logo} alt="Логотип"></img>
-                </a>
-                <h1 className="register__title">Добро пожаловать!</h1>
+            <a className="register__logo" href="/">
+                <img className="register__picture" src={logo} alt="Логотип"></img>
+            </a>
+            <h1 className="register__title">Добро пожаловать!</h1>
+            <form className="register__container">
                 <div className="form__fieldset">
                     <label className="form__input-label">Имя</label>
                     <input
                         className="form__input"
                         placeholder="Виталий"
                         name="profileName"
+                        required
+                        minLength={2}
+                        maxLength={30}
                     ></input>
                     <span className="profileName-error profile__input-error">Что-то пошло не так...</span>
                 </div>
@@ -26,6 +29,7 @@ function Register() {
                         className="form__input"
                         placeholder="pochta@yandex.ru"
                         name="profileEmail"
+                        required
                     ></input>
                     <span className="profileEmail-error profile__input-error">Что-то пошло не так...</span>
                 </div>
@@ -35,6 +39,9 @@ function Register() {
                         className="form__input"
                         placeholder="Ваш пароль"
                         name="profilePassword"
+                        required
+                        minLength={2}
+                        maxLength={30}
                     ></input>
                     <span className="profilePassword-error profile__input-error">Что-то пошло не так...</span>
                 </div>
@@ -46,7 +53,7 @@ function Register() {
                         <Link className="form__link" to="/signin">Войти</Link>
                     </div>
                 </div>
-            </div>
+            </form>
         </main>
     );
 }
