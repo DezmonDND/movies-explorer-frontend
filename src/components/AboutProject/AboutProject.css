@@ -1,0 +1,147 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    padding: 110px 70px;
+}
+
+.about__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.about__title {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26.63px;
+    border-bottom: 1px solid black;
+    margin: 0;
+    padding-bottom: 23px;
+    letter-spacing: -.04em;
+}
+
+.about__descriptions {
+    display: flex;
+    margin-top: 70px;
+    margin-bottom: 110px;
+    gap: 49px;
+}
+
+.about__subtitle {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24.2px;
+    margin: 0;
+    margin-bottom: 26px;
+    letter-spacing: -.04em;
+}
+
+.about__subtitle-description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.about__timeline {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 36px 36px;
+    text-align: center;
+    margin: 0;
+}
+
+.about__time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -.04em;
+}
+
+.about__type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #A0A0A0;
+    margin-top: 10px;
+    letter-spacing: -.04em;
+}
+
+.about__time_1-week {
+    margin: 0;
+    background-color: #2BE080;
+    height: 100%;
+}
+
+.about__time_4-week {
+    margin: 0;
+    background-color: #F2F2F2;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .about {
+        padding: 90px 50px;
+    }
+
+    .about__descriptions {
+        margin-bottom: 93px;
+        gap: 37px;
+    }
+
+    .about__subtitle {
+        margin-bottom: 21px;
+    }
+
+    .about__subtitle-description {
+        line-height: 18px;
+        font-size: 12px;
+    }
+
+    .about__timeline {
+        margin: 0;
+        font-size: 14px;
+        line-height: 16.94px;
+        grid-template-columns: 21% 79%;
+    }
+}
+
+@media screen and (max-width: 598px) {
+    .about {
+        padding: 70px 18px 69px;
+    }
+
+    .about__descriptions {
+        display: flex;
+        flex-direction: column;
+        margin-top: 60px;
+        margin-bottom: 59px;
+        gap: 57px;
+    }
+
+    .about__title {
+        font-size: 18px;
+        line-height: 21.78px;
+        padding-bottom: 26px;
+    }
+
+    .about__subtitle {
+        font-size: 18px;
+        line-height: 21.78px;
+        margin-bottom: 17px
+    }
+
+    .about__subtitle-description {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about__timeline {
+        font-size: 11px;
+        line-height: 13.31px;
+        grid-template-columns: 35% 65%;
+    }
+
+    .about__type {
+        margin-top: 0;
+    }
+}
