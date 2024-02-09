@@ -1,43 +1,98 @@
-import React from "react";
 import '../Register/Register.css';
 import './Login.css';
 import logo from "../../images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import * as auth from "../../utils/Auth";
+import { useFormWithValidation } from "../FormaValidator/FormaValidator";
+import constants from '../../utils/constants';
+import { useState } from 'react';
 
-function Login() {
+const Login = ({ handleLogin }) => {
+
+    const { values, handleChange, errors, isValid } = useFormWithValidation();
+    const navigate = useNavigate();
+    const {nameError, setNameError} = useState('');
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { email, password } = values;
+
+        if (!email || !password) {
+            console.log('Необходимо заполнить все поля');
+            // setTooltipSuccess(false)
+            // setInfoTooltipPopupOpen(true)
+            return;
+        }
+
+        auth.autorize(email, password)
+            .then((res) => {
+                if (res && res.token) {
+                    handleLogin(res);
+                    // setUserEmail(email);
+                    navigate('/movies');
+                }
+            })
+            .catch((err) => {
+                if (err.statusCose === 400) {
+                    console.log('Не передано одно из полей');
+                    setNameError('Не передано одно из полей')
+                }
+                else if (err.statusCose === 401) {
+                    console.log('Пользователь с email не найден');
+                }
+                // setTooltipSuccess(false)
+                // setInfoTooltipPopupOpen(true)
+            });
+    }
+
     return (
         <main className="register">
-            <form className="register__container">
-                <a className="register__logo" href="/">
-                    <img className="register__picture" src={logo} alt="Логотип"></img>
-                </a>
-                <h1 className="register__title">Рады видеть!</h1>
+            <a className="register__logo" href="/">
+                <img className="register__picture" src={logo} alt="Логотип"></img>
+            </a>
+            <h1 className="register__title">Рады видеть!</h1>
+            <form
+                className="register__container"
+                onSubmit={handleSubmit}
+            >
                 <div className="form__fieldset">
                     <label className="form__input-label">E-mail</label>
                     <input
+                        onChange={handleChange}
                         className="form__input"
                         placeholder="pochta@yandex.ru"
-                        name="profileEmail"
+                        name="email"
+                        id="profileEmail"
+                        type="email"
                         required
-
                     ></input>
-                    <span className="profileEmail-error profile__input-error">Что-то пошло не так...</span>
+                    <span className="profileEmail-error profile__input-error">{errors.email}</span>
                 </div>
                 <div className="form__fieldset">
                     <label className="form__input-label">Пароль</label>
                     <input
+                        onChange={handleChange}
                         className="form__input"
                         placeholder="Ваш пароль"
-                        name="profilePassword"
+                        name="password"
+                        id="profilePassword"
+                        type="password"
                         required
-                        minLength={2}
-                        maxLength={30}
                     ></input>
-                    <span className="profilePassword-error profile__input-error">Что-то пошло не так...</span>
+                    <span className="profilePassword-error profile__input-error">{errors.password}</span>
                 </div>
                 <div className="form__buttons form__buttons_login">
-                    <span className="form__request-error form__request-error_type-login">Что-то пошло не так...</span>
-                    <button className="form__button form__button_type-login" type="submit">Войти</button>
+                    <span className="form__request-error form__request-error_type-login">{nameError}</span>
+                    <button
+                        className="form__button form__button_type-login"
+                        type="submit"
+                        disabled={!isValid}
+                        style={{
+                            backgroundColor: !isValid ? '#F8F8F8' : '',
+                            color: !isValid ? '#C2C2C2' : '',
+                        }}
+                    >Войти</button>
                     <div className="form__links">
                         <p className="form__link-text">Ещё не зарегистрированы?</p>
                         <Link className="form__link" to="/signup">Регистрация</Link>

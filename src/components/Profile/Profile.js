@@ -1,39 +1,88 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import './Profile.css';
-import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useFormWithValidation } from "../FormaValidator/FormaValidator";
 
-function Profile() {
+function Profile({ handleLogout, onUpdateUser }) {
+    const { values, setValues, handleChange, errors, isValid, setIsValid } = useFormWithValidation();
+    const currentUser = useContext(CurrentUserContext)
+
+    useEffect(() => {
+        if (currentUser) {
+            setValues({
+                name: currentUser.name,
+                email: currentUser.email
+            })
+        }
+    }, [currentUser, setValues])
+
+    useEffect(() => {
+        if (currentUser.name === values.name && currentUser.email === values.email) {
+            setIsValid(false)
+        }
+    }, [setIsValid, currentUser, values])
+
+    function handleSubmit(e) {
+        // Запрещаем браузеру переходить по адресу формы
+        e.preventDefault();
+
+        // Передаём значения управляемых компонентов во внешний обработчик
+        onUpdateUser({
+            name: values.name,
+            email: values.email,
+        });
+    }
+
     return (
         <main className="profile">
             <div className="profile__container">
-                <h1 className="profile__title">Привет, Виталий!</h1>
-                <form className="profile__form">
+                <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
+                <form
+                    className="profile__form"
+                    onSubmit={handleSubmit}
+                >
                     <div className="profile__form-fieldset">
                         <label className="profile__input-name">Имя</label>
                         <input
+                            onChange={handleChange}
+                            value={values.name || ''}
                             className="profile__input"
-                            name="profileName"
+                            name="name"
                             placeholder="Виталий"
                             required
                             minLength={2}
                             maxLength={30}
                         ></input>
-                        <span className="profileName-error profile__input-error"></span>
+                        <span className="profileName-error profile__input-error">{errors.name}</span>
                     </div>
                     <div className="profile__form-fieldset profile__form-fieldset_last">
                         <label className="profile__input-name">E-mail</label>
                         <input
+                            onChange={handleChange}
+                            value={values.email || ''}
                             className="profile__input"
-                            name="profileEmail"
+                            name="email"
+                            type="email"
                             placeholder="pochta@yandex.ru"
                             required
                         ></input>
-                        <span className="profileEmail-error profile__input-error"></span>
+                        <span className="profileEmail-error profile__input-error">{errors.email}</span>
                     </div>
                     <span className="profile__request-error">При обновлении профиля произошла ошибка.</span>
                     <div className="profile__buttons">
-                        <button className="profile__button profile__button_edit" type="submit">Редактировать</button>
-                        <Link className="profile__button profile__button-exit" to={'/'}>Выйти из аккаунта</Link>
+                        <button
+                            className="profile__button profile__button_edit"
+                            type="submit"
+                            disabled={!isValid}
+                            style={{
+                                color: !isValid ? '#C2C2C2' : '',
+                            }}
+                        >Редактировать</button>
+                        <button
+                            className="profile__button profile__button-exit"
+                            type="button"
+                            onClick={handleLogout}
+                        >Выйти из аккаунта</button>
                     </div>
                 </form>
             </div>

@@ -1,23 +1,43 @@
 import React from "react";
 import './MoviesCard.css';
-import moviePreview from "../../images/movie_preview.png"
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function MoviesCard(movie) {
+function MoviesCard(props) {
+    const { movie, onMovieLike } = props;
+    const baseUrl = 'https://api.nomoreparties.co/';
+    const location = useLocation();
+
+
+    function convertToHours(duration) {
+        const hours = Math.floor(duration / 60)
+        const minutes = duration % 60;
+        return `${hours}ч ${minutes}м`
+    }
+
+    function handleLikeClick() {
+        onMovieLike(movie);
+    }
+
     return (
-        <div className="movie">
-            <Link className="movie__trailer-link" to="/">
+        <div
+            className="movie"
+        >
+            <a className="movie__trailer-link" href={movie.trailerLink}>
                 <img
                     className="movie__image"
-                    src={moviePreview}
-                    alt={movie.nameRu}
+                    src={location.pathname === '/saved-movies' ? movie.image : baseUrl + movie.image.url}
+                    alt={movie.nameRU}
                 ></img>
-            </Link>
+            </a>
             <div className="movie__info">
-                <h2 className="movie__title">Gimme Danger: История Игги и The Stooges</h2>
-                <button className="movie__like" type="button"></button>
+                <h2 className="movie__title">{movie.nameRU}</h2>
+                <button
+                    className="movie__like"
+                    type="button"
+                    onClick={handleLikeClick}
+                ></button>
             </div>
-            <p className="movie__length">1ч42м</p>
+            <p className="movie__length">{convertToHours(movie.duration)}</p>
         </div>
     );
 }
