@@ -40,12 +40,13 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #E8E8E8;
-    padding-bottom: 11px;
-    margin-top: 16px;
+    padding-bottom: 14px;
+    margin-top: 20px;
 }
 
 .profile__form-fieldset_last {
     border-bottom: none;
+    margin-top: 0;
 }
 
 .profile__input {
@@ -64,14 +65,14 @@
 }
 
 .profile__request-error {
-    min-height: 12px;
+    min-height: 25px;
     color: #FF3055;
     font-weight: 400;
     font-size: 10px;
     line-height: 12.1px;
     margin-bottom: 20px;
     text-align: center;
-    margin-top: 180px;
+    margin-top: 103px;
 }
 
 .profile__buttons {
@@ -109,11 +110,11 @@
 
     .profile__title {
         margin-top: 38px;
-        margin-bottom: 80px;
+        margin-bottom: 78px;
     }
 
     .profile__request-error {
-        margin-top: 168px;
+        margin-top: 123px;
     }
 
     .profile__form-fieldset {
@@ -123,11 +124,11 @@
 
 @media screen and (max-width: 500px) {
     .profile {
-        margin-top: 0px;
+        margin-top: 0;
     }
 
     .profile__title {
-        margin-bottom: 67px;
+        margin-bottom: 63px;
     }
 
     .profile__container {
@@ -135,7 +136,7 @@
     }
 
     .profile__request-error {
-        margin-top: 335px;
+        margin-top: 293px;
     }
 
     .profile__button {

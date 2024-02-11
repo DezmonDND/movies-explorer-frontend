@@ -8,11 +8,13 @@ const Register = () => {
 
     const navigate = useNavigate();
     const { values, handleChange, errors, isValid } = useFormWithValidation();
+    // const nameRegex = '/[a-zа-яёА-ЯЁ]/gi';
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const { email, password, name } = values;
-        auth.register(email, password, name)
+
+        auth.register(email, password, name )
             .then(() => {
                 // setTooltipSuccess(true)
                 // setInfoTooltipPopupOpen(true)
@@ -46,7 +48,9 @@ const Register = () => {
                         name="name"
                         type="text"
                         required
-                        // pattern="^[а-яА-ЯёЁa-zA-Z\\s\\-]+$"
+                        // pattern={nameRegex}
+                        minLength={2}
+                        maxLength={30}
                     ></input>
                     <span className="profileName-error profile__input-error">{errors.name}</span>
                 </div>
@@ -75,9 +79,8 @@ const Register = () => {
                     <span className="profilePassword-error profile__input-error">{errors.password}</span>
                 </div>
                 <div className="form__buttons">
-                    <span className="form__request-error">Что-то пошло не так...</span>
+                    <span className="form__request-error"></span>
                     <button
-
                         className="form__button"
                         type="submit"
                         disabled={!isValid}

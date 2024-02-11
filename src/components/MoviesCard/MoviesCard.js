@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './MoviesCard.css';
 import { useLocation } from "react-router-dom";
 
 function MoviesCard(props) {
-    const { movie, onMovieLike } = props;
+    const { movie, onCardLike, onCardDelete, savedMovies } = props;
     const baseUrl = 'https://api.nomoreparties.co/';
     const location = useLocation();
+    const [isLiked, setIsLiked] = useState(false)
 
+    useEffect(() => {
+        setIsLiked(savedMovies.some(m => movie.id === m.movieId))
+    }, [savedMovies, movie])
 
     function convertToHours(duration) {
         const hours = Math.floor(duration / 60)
@@ -15,7 +19,11 @@ function MoviesCard(props) {
     }
 
     function handleLikeClick() {
-        onMovieLike(movie);
+        onCardLike(movie);
+    }
+
+    function handleDeleteMovie() {
+        onCardDelete(movie)
     }
 
     return (
@@ -31,11 +39,16 @@ function MoviesCard(props) {
             </a>
             <div className="movie__info">
                 <h2 className="movie__title">{movie.nameRU}</h2>
-                <button
-                    className="movie__like"
+                {location.pathname === '/movies' && <button
+                    className={`movie__like ${isLiked && 'movie__like_active'}`}
                     type="button"
                     onClick={handleLikeClick}
-                ></button>
+                ></button>}
+                {location.pathname === '/saved-movies' && <button
+                    className="movie__delete"
+                    type="button"
+                    onClick={handleDeleteMovie}
+                ></button>}
             </div>
             <p className="movie__length">{convertToHours(movie.duration)}</p>
         </div>

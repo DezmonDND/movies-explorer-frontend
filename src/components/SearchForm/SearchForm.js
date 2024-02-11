@@ -1,50 +1,57 @@
-import React, { useEffect, useState } from "react";
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
+import { useFormWithValidation } from "../FormaValidator/FormaValidator";
 
-function SearchForm({ valueInput, setValueInput, shortMovies, setShortMovies }) {
-    const [input, setInput] = useState("");
+function SearchForm({ getMoviesFromServer, shortMoviesCheckbox, setShortMoviesCheckbox }) {
 
-    useEffect(() => {
-        setInput(valueInput);
-    }, [valueInput])
+    const { values, handleChange, isValid } = useFormWithValidation();
 
-    function handleChangeInput(e) {
-        setInput(e.target.value);
+    function toggleCheckbox() {
+        const { movie } = values;
+        if (shortMoviesCheckbox) {
+            setShortMoviesCheckbox(false);
+            getMoviesFromServer(movie || '');
+        } else {
+            setShortMoviesCheckbox(true);
+            getMoviesFromServer(movie || '');
+        }
     }
 
-    function handleSearch(e) {
-        if (e) {
-            e.preventDefault();
-        }
-        setValueInput(input);
+    function onSubmit(evt) {
+        evt.preventDefault();
+        const { movie } = values;
+        getMoviesFromServer(movie);
     }
 
     return (
         <div className="search">
             <form
                 className="search__container"
+                onSubmit={onSubmit}
             >
                 <div className="search__form">
                     <input
                         type="text"
-                        value={input}
-                        onChange={handleChangeInput}
+                        onChange={handleChange}
                         className="search__input"
                         placeholder="Фильм"
+                        name="movie"
                         required
                     ></input>
                     <button
                         className="search__button"
                         type="submit"
-                        onClick={handleSearch}
+                        disabled={!isValid}
+                        style={{
+                            backgroundColor: !isValid ? '#F8F8F8' : '',
+                            color: !isValid ? '#C2C2C2' : '',
+                        }}
                     >Найти</button>
                     <span className="search__error"></span>
                 </div>
                 <FilterCheckbox
-                    shortMovies={shortMovies}
-                    setShortMovies={setShortMovies}
-                    onCLick={handleSearch}
+                    shortMoviesCheckbox={shortMoviesCheckbox}
+                    toggleCheckbox={toggleCheckbox}
                 ></FilterCheckbox>
             </form>
         </div>

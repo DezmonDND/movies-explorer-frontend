@@ -1,11 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import './Profile.css';
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
 
-function Profile({ handleLogout, onUpdateUser }) {
+function Profile({ handleLogout, onUpdateUser, currentUser }) {
     const { values, setValues, handleChange, errors, isValid, setIsValid } = useFormWithValidation();
-    const currentUser = useContext(CurrentUserContext)
 
     useEffect(() => {
         if (currentUser) {
@@ -53,8 +51,8 @@ function Profile({ handleLogout, onUpdateUser }) {
                             minLength={2}
                             maxLength={30}
                         ></input>
-                        <span className="profileName-error profile__input-error">{errors.name}</span>
                     </div>
+                    <span className="profileName-error profile__input-error">{errors.name}</span>
                     <div className="profile__form-fieldset profile__form-fieldset_last">
                         <label className="profile__input-name">E-mail</label>
                         <input
@@ -66,9 +64,9 @@ function Profile({ handleLogout, onUpdateUser }) {
                             placeholder="pochta@yandex.ru"
                             required
                         ></input>
-                        <span className="profileEmail-error profile__input-error">{errors.email}</span>
                     </div>
-                    <span className="profile__request-error">При обновлении профиля произошла ошибка.</span>
+                    <span className="profileEmail-error profile__input-error">{errors.email}</span>
+                    <span className="profile__request-error"></span>
                     <div className="profile__buttons">
                         <button
                             className="profile__button profile__button_edit"

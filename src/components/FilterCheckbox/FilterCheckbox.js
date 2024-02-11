@@ -1,20 +1,15 @@
 import React from "react";
 import './FilterCheckbox.css';
 
-function FilterCheckbox({ shortMovies, setShortMovies, onCLick }) {
+function FilterCheckbox({ shortMoviesCheckbox, toggleCheckbox }) {
     
-    function toggleCheckbox(e) {
-        setShortMovies(e.target.checked);
-        onCLick()
-    }
-
     return (
         <div className="checkbox">
             <input
                 type="checkbox"
                 id="checkbox"
                 className="checkbox__switcher"
-                checked={shortMovies}
+                checked={shortMoviesCheckbox}
                 onChange={toggleCheckbox}
             ></input>
             <label htmlFor="checkbox"></label>

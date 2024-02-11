@@ -22,9 +22,60 @@ function App() {
 
   // Данные пользователя
   const [currentUser, setCurrentUser] = useState({});
+  const [savedMovies, setSavedMovies] = useState([])
   const [token, setTokenState] = useState(getToken());
 
   const navigate = useNavigate();
+
+
+  // Получение данных с сервера и отрисовка
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
+        .then(([userData, cardData]) => {
+          setCurrentUser(userData);
+          setSavedMovies(cardData);
+        })
+        .catch((e) => {
+          console.log(`Error! ${e}`)
+        });
+    }
+  }, [loggedIn])
+
+  // Удалить карточку
+  function handleCardDelete(movie) {
+    mainApi.deleteMovie(movie._id)
+      .then(() => {
+        setSavedMovies((state) => state.filter((c) => c._id !== movie._id))
+      })
+      .catch((e) => console.log(`Error! ${e}`))
+  }
+
+  // Поставить лайк
+  function handleMovieLike(data) {
+    const isSaved = savedMovies.some(movie => movie.movieId === data.id);
+
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    if (!isSaved) {
+      mainApi.saveNewMovie(data)
+        .then((newCard) => {
+          setSavedMovies([...savedMovies, newCard]);
+        })
+        .catch((e) => { console.log(`Error! ${e}`) });
+    } else {
+      console.log(savedMovies);
+      console.log(data);
+      const likedMovie = savedMovies.filter((movie) => {
+        return movie.movieId === data.id
+      })
+      const movieId = likedMovie[0]._id
+      mainApi.deleteMovie(movieId)
+        .then(() => {
+          setSavedMovies((state) => state.filter(c => c._id !== movieId))
+        })
+        .catch((e) => console.log(`Error! ${e}`))
+    }
+  }
 
   // Авторизация
   function handleLogin(userData) {
@@ -50,10 +101,20 @@ function App() {
       .catch((e) => console.log(`Error! ${e}`));
   }, [navigate]);
 
+  // Очистить ЛС при выходе
+  function clearStorage() {
+    localStorage.removeItem('allMovies')
+    localStorage.removeItem('searchValue')
+    localStorage.removeItem('foundMovies')
+    localStorage.removeItem('shortMovies')
+    localStorage.removeItem('shortMoviesCheckbox')
+  }
+
   // Выход
   function handleLogout() {
     setLoggedIn(false);
     removeToken();
+    clearStorage();
   }
 
   // Отмена редиректа в адресной строке при обновлении страницы
@@ -90,6 +151,8 @@ function App() {
               <ProtectedRouteElement
                 element={Movies}
                 loggedIn={loggedIn}
+                onCardLike={handleMovieLike}
+                savedMovies={savedMovies}
               />
             }></Route>
           <Route path='/saved-movies'
@@ -97,6 +160,8 @@ function App() {
               <ProtectedRouteElement
                 element={SavedMovies}
                 loggedIn={loggedIn}
+                onCardDelete={handleCardDelete}
+                savedMovies={savedMovies}
               />
             }></Route>
           <Route path='/profile'
@@ -106,6 +171,7 @@ function App() {
                 loggedIn={loggedIn}
                 handleLogout={handleLogout}
                 onUpdateUser={handleUpdateUser}
+                currentUser={currentUser}
               />
             }></Route>
           <Route path='*' element={<NotFoundPage />}></Route>

@@ -3,7 +3,7 @@ import './MoviesCardList.css';
 import MoviesCard from "../MoviesCard/MoviesCard"
 
 function MoviesCardList(props) {
-    const { foundMovies, onMovieLike } = props;
+    const { savedMovies, foundMovies, onCardLike, onCardDelete } = props;
     const [showMovies, setShowMovies] = useState(12)
     const [moreMovies, setMoreMovies] = useState(4)
 
@@ -44,8 +44,10 @@ function MoviesCardList(props) {
                         key={movieId}
                     >
                         <MoviesCard
+                            savedMovies={savedMovies}
                             movie={movie}
-                            onMovieLike={onMovieLike}
+                            onCardLike={onCardLike}
+                            onCardDelete={onCardDelete}
                         ></MoviesCard>
                     </li>
                 )) : <span className="movies__not-found">Ничего не найдено</span>}

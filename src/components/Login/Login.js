@@ -4,15 +4,10 @@ import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from "../../utils/Auth";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
-import constants from '../../utils/constants';
-import { useState } from 'react';
 
 const Login = ({ handleLogin }) => {
-
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
-    const {nameError, setNameError} = useState('');
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,11 +30,10 @@ const Login = ({ handleLogin }) => {
             })
             .catch((err) => {
                 if (err.statusCose === 400) {
-                    console.log('Не передано одно из полей');
-                    setNameError('Не передано одно из полей')
+                    console.log('Не передано одно из полей');                    
                 }
                 else if (err.statusCose === 401) {
-                    console.log('Пользователь с email не найден');
+                    console.log('Пользователь с email не найден');                   
                 }
                 // setTooltipSuccess(false)
                 // setInfoTooltipPopupOpen(true)
@@ -83,7 +77,7 @@ const Login = ({ handleLogin }) => {
                     <span className="profilePassword-error profile__input-error">{errors.password}</span>
                 </div>
                 <div className="form__buttons form__buttons_login">
-                    <span className="form__request-error form__request-error_type-login">{nameError}</span>
+                    <span className="form__request-error form__request-error_type-login">{}</span>
                     <button
                         className="form__button form__button_type-login"
                         type="submit"
