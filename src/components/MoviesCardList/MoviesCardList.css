@@ -17,7 +17,7 @@
 
 .movies__not-found {
     text-align: center;
-    grid-column: 1/-1
+    grid-column: 1/-1;
 }
 
 .movies__button-more {

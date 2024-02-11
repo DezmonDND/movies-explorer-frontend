@@ -1,8 +1,6 @@
-import React from "react";
-import './FilterCheckbox.css';
+import "./FilterCheckbox.css";
 
 function FilterCheckbox({ shortMoviesCheckbox, toggleCheckbox }) {
-    
     return (
         <div className="checkbox">
             <input

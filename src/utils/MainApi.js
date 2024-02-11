@@ -13,35 +13,33 @@ export class MainApi {
     // Регистрация
     register(email, password, name) {
         return fetch(`${this._baseUrl}/signup`, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password, name })
-        })
-            .then(this._checkError);
-    };
+            body: JSON.stringify({ email, password, name }),
+        }).then(this._checkError);
+    }
 
     // Авторизация
     login(email, password) {
         return fetch(`${this._baseUrl}/signin`, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password })
-        })
-            .then(this._checkError)
-    };
+            body: JSON.stringify({ email, password }),
+        }).then(this._checkError);
+    }
 
     // Проверка токена, запрос контента
     checkToken(token) {
         return fetch(`${this._baseUrl}/users/me`, {
-            method: 'GET',
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
+                Authorization: `Bearer ${token}`,
+            },
         })
             .then(this._checkError)
             .catch((err) => console.log(err));
@@ -49,53 +47,50 @@ export class MainApi {
 
     // Получить информацию о пользователе
     getUserInfo() {
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem("jwt");
         return fetch(`${this._baseUrl}/users/me`, {
             headers: {
-                method: 'GET',
+                method: "GET",
                 authorization: `Bearer ${token}`,
-            }
-        })
-            .then(this._checkError);
+            },
+        }).then(this._checkError);
     }
 
     // Обновить информацию пользователя
     updateUserInfo(inputValues) {
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem("jwt");
         return fetch(`${this._baseUrl}/users/me`, {
-            method: 'PATCH',
+            method: "PATCH",
             headers: {
                 authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 email: inputValues.email,
                 name: inputValues.name,
-            })
-        })
-            .then(this._checkError);
+            }),
+        }).then(this._checkError);
     }
 
     // Получить сохраненные фильмы
     getSavedMovies() {
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem("jwt");
         return fetch(`${this._baseUrl}/movies`, {
             headers: {
-                method: 'GET',
+                method: "GET",
                 authorization: `Bearer ${token}`,
-            }
-        })
-            .then(this._checkError);
+            },
+        }).then(this._checkError);
     }
 
     // Сохранить новый фильм
     saveNewMovie(inputValues) {
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem("jwt");
         return fetch(`${this._baseUrl}/movies`, {
-            method: 'POST',
+            method: "POST",
             headers: {
                 authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 country: inputValues.country,
@@ -109,25 +104,23 @@ export class MainApi {
                 movieId: inputValues.id,
                 nameRU: inputValues.nameRU,
                 nameEN: inputValues.nameEN,
-            })
-        })
-            .then(this._checkError);
+            }),
+        }).then(this._checkError);
     }
 
     // Удалить фильм
     deleteMovie(movieId) {
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem("jwt");
         return fetch(`${this._baseUrl}/movies/${movieId}`, {
-            method: 'DELETE',
+            method: "DELETE",
             headers: {
                 authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-        })
-            .then(this._checkError);
+        }).then(this._checkError);
     }
 }
 
 export const mainApi = new MainApi({
-    baseUrl: 'https://api.movies.denedoseikin.nomoredomainsmonster.ru',
-})
+    baseUrl: "https://api.movies.denedoseikin.nomoredomainsmonster.ru",
+});

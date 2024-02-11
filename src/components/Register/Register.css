@@ -5,7 +5,6 @@
     max-width: 396px;
     width: 100%;
     justify-content: center;
-
 }
 
 .register__container {
@@ -43,7 +42,7 @@
     font-weight: 400;
     font-size: 10px;
     line-height: 12.1px;
-    color: #A0A0A0;
+    color: #a0a0a0;
     margin-bottom: 5px;
 }
 
@@ -53,19 +52,19 @@
     line-height: 16.94px;
     color: #000000;
     border: none;
-    border-bottom: 1px solid #E8E8E8;
+    border-bottom: 1px solid #e8e8e8;
     padding: 0;
     padding-bottom: 10px;
 }
 
 .form__input:focus {
     outline: none;
-    border-bottom: 1px solid #3456F3;
+    border-bottom: 1px solid #3456f3;
 }
 
 .profile__input-error {
     min-height: 25px;
-    color: #FF3055;
+    color: #ff3055;
     font-weight: 400;
     font-size: 10px;
     line-height: 12.1px;
@@ -76,7 +75,7 @@
 
 .form__request-error {
     min-height: 12px;
-    color: #FF3055;
+    color: #ff3055;
     font-weight: 400;
     font-size: 10px;
     line-height: 12.1px;
@@ -92,22 +91,22 @@
 
 .form__button {
     all: unset;
-    background-color: #3456F3;
+    background-color: #3456f3;
     font-weight: 500;
     font-size: 14px;
     line-height: 16.94px;
     cursor: pointer;
-    color: #FFFFFF;
+    color: #ffffff;
     padding: 15px 126px;
     border-radius: 3px;
     text-align: center;
 }
 
 .form__button_disabled {
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
 }
 
-.form__button_disabled:hover{
+.form__button_disabled:hover {
     opacity: 0;
     transition: 0;
 }
@@ -129,7 +128,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 16.94px;
-    color: #A0A0A0;
+    color: #a0a0a0;
 }
 
 .form__link {
@@ -137,7 +136,7 @@
     font-size: 14px;
     line-height: 16.94px;
     text-decoration: none;
-    color: #3456F3;
+    color: #3456f3;
 }
 
 .form__link:hover {

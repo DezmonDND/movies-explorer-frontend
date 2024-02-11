@@ -1,5 +1,4 @@
-import React from "react";
-import './NotFoundPage.css';
+import "./NotFoundPage.css";
 import { Link } from "react-router-dom";
 
 function NotFoundPage() {
@@ -8,7 +7,9 @@ function NotFoundPage() {
             <div className="error-page__container">
                 <h1 className="erorr-page__title">404</h1>
                 <p className="error-page__text">Страница не найдена</p>
-                <Link to="/"className="error-page__link">Назад</Link>
+                <Link to="/" className="error-page__link">
+                    Назад
+                </Link>
             </div>
         </main>
     );

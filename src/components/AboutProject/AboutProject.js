@@ -1,5 +1,4 @@
-import React from "react";
-import './AboutProject.css';
+import "./AboutProject.css";
 
 function AboutProject() {
     return (
@@ -8,12 +7,23 @@ function AboutProject() {
                 <h2 className="about__title">О проекте</h2>
                 <div className="about__descriptions">
                     <div className="about__description">
-                        <h3 className="about__subtitle">Дипломный проект включал 5 этапов</h3>
-                        <p className="about__subtitle-description">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
+                        <h3 className="about__subtitle">
+                            Дипломный проект включал 5 этапов
+                        </h3>
+                        <p className="about__subtitle-description">
+                            Составление плана, работу над бэкендом, вёрстку,
+                            добавление функциональности и финальные доработки.
+                        </p>
                     </div>
                     <div className="about__description">
-                        <h3 className="about__subtitle">На выполнение диплома ушло 5 недель</h3>
-                        <p className="about__subtitle-description">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
+                        <h3 className="about__subtitle">
+                            На выполнение диплома ушло 5 недель
+                        </h3>
+                        <p className="about__subtitle-description">
+                            У каждого этапа был мягкий и жёсткий дедлайн,
+                            которые нужно было соблюдать, чтобы успешно
+                            защититься.
+                        </p>
                     </div>
                 </div>
                 <div className="about__timeline">

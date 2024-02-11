@@ -1,5 +1,5 @@
-import '../Register/Register.css';
-import './Login.css';
+import "../Register/Register.css";
+import "./Login.css";
 import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from "../../utils/Auth";
@@ -14,7 +14,7 @@ const Login = ({ handleLogin }) => {
         const { email, password } = values;
 
         if (!email || !password) {
-            console.log('Необходимо заполнить все поля');
+            console.log("Необходимо заполнить все поля");
             // setTooltipSuccess(false)
             // setInfoTooltipPopupOpen(true)
             return;
@@ -25,31 +25,31 @@ const Login = ({ handleLogin }) => {
                 if (res && res.token) {
                     handleLogin(res);
                     // setUserEmail(email);
-                    navigate('/movies');
+                    navigate("/movies");
                 }
             })
             .catch((err) => {
                 if (err.statusCose === 400) {
-                    console.log('Не передано одно из полей');                    
-                }
-                else if (err.statusCose === 401) {
-                    console.log('Пользователь с email не найден');                   
+                    console.log("Не передано одно из полей");
+                } else if (err.statusCose === 401) {
+                    console.log("Пользователь с email не найден");
                 }
                 // setTooltipSuccess(false)
                 // setInfoTooltipPopupOpen(true)
             });
-    }
+    };
 
     return (
         <main className="register">
             <a className="register__logo" href="/">
-                <img className="register__picture" src={logo} alt="Логотип"></img>
+                <img
+                    className="register__picture"
+                    src={logo}
+                    alt="Логотип"
+                ></img>
             </a>
             <h1 className="register__title">Рады видеть!</h1>
-            <form
-                className="register__container"
-                onSubmit={handleSubmit}
-            >
+            <form className="register__container" onSubmit={handleSubmit}>
                 <div className="form__fieldset">
                     <label className="form__input-label">E-mail</label>
                     <input
@@ -61,7 +61,9 @@ const Login = ({ handleLogin }) => {
                         type="email"
                         required
                     ></input>
-                    <span className="profileEmail-error profile__input-error">{errors.email}</span>
+                    <span className="profileEmail-error profile__input-error">
+                        {errors.email}
+                    </span>
                 </div>
                 <div className="form__fieldset">
                     <label className="form__input-label">Пароль</label>
@@ -74,27 +76,37 @@ const Login = ({ handleLogin }) => {
                         type="password"
                         required
                     ></input>
-                    <span className="profilePassword-error profile__input-error">{errors.password}</span>
+                    <span className="profilePassword-error profile__input-error">
+                        {errors.password}
+                    </span>
                 </div>
                 <div className="form__buttons form__buttons_login">
-                    <span className="form__request-error form__request-error_type-login">{}</span>
+                    <span className="form__request-error form__request-error_type-login">
+                        {}
+                    </span>
                     <button
                         className="form__button form__button_type-login"
                         type="submit"
                         disabled={!isValid}
                         style={{
-                            backgroundColor: !isValid ? '#F8F8F8' : '',
-                            color: !isValid ? '#C2C2C2' : '',
+                            backgroundColor: !isValid ? "#F8F8F8" : "",
+                            color: !isValid ? "#C2C2C2" : "",
                         }}
-                    >Войти</button>
+                    >
+                        Войти
+                    </button>
                     <div className="form__links">
-                        <p className="form__link-text">Ещё не зарегистрированы?</p>
-                        <Link className="form__link" to="/signup">Регистрация</Link>
+                        <p className="form__link-text">
+                            Ещё не зарегистрированы?
+                        </p>
+                        <Link className="form__link" to="/signup">
+                            Регистрация
+                        </Link>
                     </div>
                 </div>
             </form>
         </main>
     );
-}
+};
 
 export default Login;

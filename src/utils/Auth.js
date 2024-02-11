@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.movies.denedoseikin.nomoredomainsmonster.ru';
+export const BASE_URL =
+    "https://api.movies.denedoseikin.nomoredomainsmonster.ru";
 
 function checkError(res) {
     if (res.ok) {
@@ -9,35 +10,33 @@ function checkError(res) {
 
 export const register = (email, password, name) => {
     return fetch(`${BASE_URL}/signup`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password, name })
-    })
-        .then(checkError);
+        body: JSON.stringify({ email, password, name }),
+    }).then(checkError);
 };
 
 export const autorize = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password })
-    })
-        .then(checkError)
+        body: JSON.stringify({ email, password }),
+    }).then(checkError);
 };
 
 // Проверка токена, запрос контента
 export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
-        method: 'GET',
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        }
+            Authorization: `Bearer ${token}`,
+        },
     })
         .then(checkError)
         .catch((err) => console.log(err));
-}
+};

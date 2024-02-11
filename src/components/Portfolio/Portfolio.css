@@ -8,7 +8,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    color: #A0A0A0;
+    color: #a0a0a0;
     margin: 0;
 }
 
@@ -20,7 +20,7 @@
     font-weight: 400;
     font-size: 30px;
     line-height: 50px;
-    letter-spacing: -.04em;
+    letter-spacing: -0.04em;
     gap: 20px;
     padding-bottom: 19px;
     margin: 0;
@@ -28,7 +28,7 @@
 }
 
 .portfolio__link {
-    border-bottom: 1px solid #E8E8E8;
+    border-bottom: 1px solid #e8e8e8;
     padding-bottom: 19px;
 }
 
@@ -87,7 +87,7 @@
     .portfolio__link-name {
         font-size: 18px;
         line-height: 28px;
-        letter-spacing: -.04em;
+        letter-spacing: -0.04em;
     }
 
     .portfolio__link-image {

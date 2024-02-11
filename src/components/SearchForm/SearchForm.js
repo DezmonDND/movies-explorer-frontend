@@ -1,19 +1,22 @@
-import './SearchForm.css';
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
+import "./SearchForm.css";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
 
-function SearchForm({ getMoviesFromServer, shortMoviesCheckbox, setShortMoviesCheckbox }) {
-
+function SearchForm({
+    getMoviesFromServer,
+    shortMoviesCheckbox,
+    setShortMoviesCheckbox,
+}) {
     const { values, handleChange, isValid } = useFormWithValidation();
 
     function toggleCheckbox() {
         const { movie } = values;
         if (shortMoviesCheckbox) {
             setShortMoviesCheckbox(false);
-            getMoviesFromServer(movie || '');
+            getMoviesFromServer(movie || "");
         } else {
             setShortMoviesCheckbox(true);
-            getMoviesFromServer(movie || '');
+            getMoviesFromServer(movie || "");
         }
     }
 
@@ -25,10 +28,7 @@ function SearchForm({ getMoviesFromServer, shortMoviesCheckbox, setShortMoviesCh
 
     return (
         <div className="search">
-            <form
-                className="search__container"
-                onSubmit={onSubmit}
-            >
+            <form className="search__container" onSubmit={onSubmit}>
                 <div className="search__form">
                     <input
                         type="text"
@@ -43,10 +43,12 @@ function SearchForm({ getMoviesFromServer, shortMoviesCheckbox, setShortMoviesCh
                         type="submit"
                         disabled={!isValid}
                         style={{
-                            backgroundColor: !isValid ? '#F8F8F8' : '',
-                            color: !isValid ? '#C2C2C2' : '',
+                            backgroundColor: !isValid ? "#F8F8F8" : "",
+                            color: !isValid ? "#C2C2C2" : "",
                         }}
-                    >Найти</button>
+                    >
+                        Найти
+                    </button>
                     <span className="search__error"></span>
                 </div>
                 <FilterCheckbox

@@ -13,15 +13,14 @@ export class MoviesApi {
 
     // Получить список фильмов
     getMovies() {
-        return fetch('https://api.nomoreparties.co/beatfilm-movies', {
+        return fetch("https://api.nomoreparties.co/beatfilm-movies", {
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
-        })
-            .then(this._checkError)
+        }).then(this._checkError);
     }
 }
 
 export const moviesApi = new MoviesApi({
-    url: 'https://api.nomoreparties.co'
+    url: "https://api.nomoreparties.co",
 });
