@@ -8,4 +8,5 @@
 
 ## Ссылка на макет
 Ссылка на пул [реквест](https://github.com/DezmonDND/movies-explorer-frontend/pull/2)
-Ссылка на проект: movies.denedoseikin.nomoredomainsmonster.ru
+Ссылка на проект: [https://movies.den.nomoredomainsmonster.ru]
+Ссылка на API: [https://api.movies.den.nomoredomainsmonster.ru]

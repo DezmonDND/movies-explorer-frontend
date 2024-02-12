@@ -1,3 +1,4 @@
+/* eslint-disable */
 import "./Navigation.css";
 import profileIconBtn from "../../images/profile.svg";
 import { NavLink, useLocation } from "react-router-dom";
@@ -15,7 +16,7 @@ function Navigation(props) {
                             location.pathname,
                         ) && (
                             <NavLink
-                                className={`navigation__link ${location.pathname === ("/movies" || "/saved-movies" || "/profile") ? "navigation__link_active" : ""}`}
+                                className={`navigation__link ${location.pathname === "/movies" || "/saved-movies" || "/profile" ? "navigation__link_active" : ""}`}
                                 to="/movies"
                             >
                                 Фильмы
@@ -25,7 +26,7 @@ function Navigation(props) {
                             location.pathname,
                         ) && (
                             <NavLink
-                                className={`navigation__link ${location.pathname === ("/movies" || "/saved-movies" || "/profile") ? "navigation__link_active" : ""}`}
+                                className={`navigation__link ${location.pathname === "/movies" || "/saved-movies" || "/profile" ? "navigation__link_active" : ""}`}
                                 to="/saved-movies"
                             >
                                 Сохранённые фильмы

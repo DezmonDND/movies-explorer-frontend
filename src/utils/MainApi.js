@@ -122,5 +122,5 @@ export class MainApi {
 }
 
 export const mainApi = new MainApi({
-    baseUrl: "https://api.movies.denedoseikin.nomoredomainsmonster.ru",
+    baseUrl: "http://api.moviesdb.denedoseikin.nomoredomainsmonster.ru",
 });
