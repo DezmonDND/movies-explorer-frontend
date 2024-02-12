@@ -1,5 +1,5 @@
 export const BASE_URL =
-    "http://api.moviesdb.denedoseikin.nomoredomainsmonster.ru";
+    "https://api.movies.den.nomoredomainsmonster.ru";
 
 function checkError(res) {
     if (res.ok) {
