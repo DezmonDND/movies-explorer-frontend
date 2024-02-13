@@ -4,7 +4,8 @@ import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from "../../utils/Auth";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
-import { incorrectPassword } from "../../utils/constants";
+import { INCORRECT_PASSWORD } from "../../utils/constants";
+import { useEffect } from "react";
 
 const Login = ({
     handleLogin,
@@ -14,6 +15,10 @@ const Login = ({
 }) => {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setRequestInfo("");
+    }, [setRequestInfo]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

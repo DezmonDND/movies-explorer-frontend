@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { moviesApi } from "../../utils/MoviesApi";
 import Preloader from "../Preloader/Preloader";
 
-function Movies({ onCardLike, savedMovies }) {
+function Movies({ onCardLike, savedMovies, isFirstSearch, setIsFirstSearch }) {
     const [allMovies, setAllMovies] = useState([]);
     const [shortMoviesCheckbox, setShortMoviesCheckbox] = useState(false);
     const [foundMovies, setFoundMovies] = useState([]);
@@ -14,7 +14,7 @@ function Movies({ onCardLike, savedMovies }) {
 
     // Получить список фильмов с сервера
     function getMoviesFromServer(searchValue) {
-        if (allMovies.length !== 0) {
+        if (allMovies.length !==0) {
             findMovies(searchValue, shortMoviesCheckbox, allMovies);
         } else {
             setIsLoading(true);
@@ -24,6 +24,7 @@ function Movies({ onCardLike, savedMovies }) {
                     setAllMovies(movies);
                     setShortMoviesCheckbox(false);
                     findMovies(searchValue, shortMoviesCheckbox, movies);
+                    // setIsFirstSearch(false)
                 })
                 .catch((e) => {
                     console.log(`Ошибка при загрузке фильмов с сервера! ${e}`);
@@ -60,9 +61,10 @@ function Movies({ onCardLike, savedMovies }) {
 
     // Загрузить список фильмов, состояние чекбокса и значение поиска из ЛС
     useEffect(() => {
-        if (allMovies.length !== 0) {
-            console.log(allMovies.length);
-            const conservedMovies = JSON.parse(localStorage.getItem("allMovies"));
+        if (allMovies.length !==0) {
+            const conservedMovies = JSON.parse(
+                localStorage.getItem("allMovies"),
+            );
             const checkbox = JSON.parse(
                 localStorage.getItem("shortMoviesCheckbox"),
             );
@@ -91,6 +93,7 @@ function Movies({ onCardLike, savedMovies }) {
                     savedMovies={savedMovies}
                     foundMovies={foundMovies}
                     onCardLike={onCardLike}
+                    isFirstSearch={isFirstSearch}
                 ></MoviesCardList>
             </div>
         </main>

@@ -6,6 +6,7 @@ import { NavLink, useLocation } from "react-router-dom";
 function Navigation(props) {
     const location = useLocation();
     const { loggedIn } = props;
+    // const activeLink = isActive ? "navigation__link_underline" : "";
 
     return (
         <>
@@ -16,8 +17,13 @@ function Navigation(props) {
                             location.pathname,
                         ) && (
                             <NavLink
-                                className={`navigation__link ${location.pathname === "/movies" || "/saved-movies" || "/profile" ? "navigation__link_active" : ""}`}
+                                className={`navigation__link  ${location.pathname === "/movies" || "/saved-movies" || "/profile" ? "navigation__link_active" : ""}`}
                                 to="/movies"
+                                style={({ isActive }) => ({
+                                    borderBottom: isActive
+                                        ? "1px solid black"
+                                        : "",
+                                })}
                             >
                                 Фильмы
                             </NavLink>
@@ -28,6 +34,11 @@ function Navigation(props) {
                             <NavLink
                                 className={`navigation__link ${location.pathname === "/movies" || "/saved-movies" || "/profile" ? "navigation__link_active" : ""}`}
                                 to="/saved-movies"
+                                style={({ isActive }) => ({
+                                    borderBottom: isActive
+                                        ? "1px solid black"
+                                        : "",
+                                })}
                             >
                                 Сохранённые фильмы
                             </NavLink>

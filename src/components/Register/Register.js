@@ -3,7 +3,8 @@ import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from "../../utils/Auth";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
-import { badEmail } from "../../utils/constants";
+import { BAD_EMAIL, REGEX_EMAIL, REGEX_NAME } from "../../utils/constants";
+import { useEffect } from "react";
 
 const Register = ({
     handleLogin,
@@ -15,7 +16,10 @@ const Register = ({
 }) => {
     const navigate = useNavigate();
     const { values, handleChange, errors, isValid } = useFormWithValidation();
-    // const nameRegex = '/[a-zа-яёА-ЯЁ]/gi';
+
+    useEffect(() => {
+        setRequestInfo("");
+    }, [setRequestInfo]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +36,7 @@ const Register = ({
                 if (err.status === 400) {
                     console.log("Некорректно заполнено одно из полей");
                 }
-                setRequestInfo(badEmail);
+                setRequestInfo(BAD_EMAIL);
             });
     };
 
@@ -56,7 +60,7 @@ const Register = ({
                         name="name"
                         type="text"
                         required
-                        // pattern={nameRegex}
+                        pattern={REGEX_NAME}
                         minLength={2}
                         maxLength={30}
                     ></input>
@@ -70,6 +74,7 @@ const Register = ({
                         onChange={handleChange}
                         className="form__input"
                         placeholder="pochta@yandex.ru"
+                        pattern={REGEX_EMAIL}
                         name="email"
                         type="email"
                         required

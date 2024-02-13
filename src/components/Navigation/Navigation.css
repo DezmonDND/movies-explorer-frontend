@@ -30,6 +30,10 @@
     color: #000000;
 }
 
+.navigation__link_underline {
+    border-bottom: 1px solid #000000;
+}
+
 .navigation__link:hover {
     opacity: 0.8;
     transition: 0.5s;

@@ -1,10 +1,25 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Profile.css";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
+import { REGEX_NAME, REGEX_EMAIL } from "../../utils/constants";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ handleLogout, onUpdateUser, currentUser }) {
+function Profile({
+    handleLogout,
+    onUpdateUser,
+
+    requestInfo,
+    setRequestInfo,
+}) {
     const { values, setValues, handleChange, errors, isValid, setIsValid } =
         useFormWithValidation();
+
+    const currentUser = useContext(CurrentUserContext);
+    const [isSuccess, setIsSuccess] = useState(true);
+
+    useEffect(() => {
+        setRequestInfo('')
+    }, [setRequestInfo])
 
     useEffect(() => {
         if (currentUser) {
@@ -49,6 +64,7 @@ function Profile({ handleLogout, onUpdateUser, currentUser }) {
                             name="name"
                             placeholder="Виталий"
                             required
+                            pattern={REGEX_NAME}
                             minLength={2}
                             maxLength={30}
                         ></input>
@@ -65,13 +81,16 @@ function Profile({ handleLogout, onUpdateUser, currentUser }) {
                             name="email"
                             type="email"
                             placeholder="pochta@yandex.ru"
+                            pattern={REGEX_EMAIL}
                             required
                         ></input>
                     </div>
                     <span className="profileEmail-error profile__input-error">
                         {errors.email}
                     </span>
-                    <span className="profile__request-error"></span>
+                    <span className="profile__request-error">
+                        {requestInfo}
+                    </span>
                     <div className="profile__buttons">
                         <button
                             className="profile__button profile__button_edit"

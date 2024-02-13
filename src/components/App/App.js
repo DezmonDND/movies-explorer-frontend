@@ -15,11 +15,16 @@ import { getToken, setToken, removeToken } from "../../utils/token";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import { mainApi } from "../../utils/MainApi";
-import { incorrectPassword } from "../../utils/constants";
+import {
+    INCORRECT_PASSWORD,
+    UPDATE_ERROR,
+    UPDATE_SUCCESS,
+} from "../../utils/constants";
 
 function App() {
     const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(undefined); // Чтобы не редиректило при обновлении страницы
+    const [isFirstSearch, setIsFirstSearch] = useState(true);
 
     // Данные пользователя
     const [currentUser, setCurrentUser] = useState({});
@@ -101,7 +106,7 @@ function App() {
                 } else if (err.statusCose === 401) {
                     console.log("Пользователь с email не найден");
                 }
-                setRequestInfo(incorrectPassword);
+                setRequestInfo(INCORRECT_PASSWORD);
             });
     }
 
@@ -145,6 +150,7 @@ function App() {
         setLoggedIn(false);
         removeToken();
         clearStorage();
+        navigate("/");
     }
 
     // Отмена редиректа в адресной строке при обновлении страницы
@@ -158,8 +164,12 @@ function App() {
             .updateUserInfo(inputValues)
             .then((newUser) => {
                 setCurrentUser(newUser);
+                setRequestInfo(UPDATE_SUCCESS);
             })
-            .catch((e) => console.log(`Error! ${e}`));
+            .catch((e) => {
+                console.log(`Error! ${e}`);
+                setRequestInfo(UPDATE_ERROR);
+            });
     }
 
     return (
@@ -169,32 +179,36 @@ function App() {
                     location.pathname,
                 ) && <Header loggedIn={loggedIn}></Header>}
                 <Routes>
-                    <Route
-                        path="/signin"
-                        element={
-                            <Login
-                                handleLogin={handleLogin}
-                                requestInfo={requestInfo}
-                                setRequestInfo={setRequestInfo}
-                                setLoggedIn={setLoggedIn}
-                                handleAutorize={handleAutorize}
-                            />
-                        }
-                    ></Route>
-                    <Route
-                        path="/signup"
-                        element={
-                            <Register
-                                handleLogin={handleLogin}
-                                isSuccess={isSuccess}
-                                setIsSucces={setIsSucces}
-                                requestInfo={requestInfo}
-                                setRequestInfo={setRequestInfo}
-                                setLoggedIn={setLoggedIn}
-                                handleAutorize={handleAutorize}
-                            />
-                        }
-                    ></Route>
+                    {!loggedIn && (
+                        <Route
+                            path="/signin"
+                            element={
+                                <Login
+                                    handleLogin={handleLogin}
+                                    requestInfo={requestInfo}
+                                    setRequestInfo={setRequestInfo}
+                                    setLoggedIn={setLoggedIn}
+                                    handleAutorize={handleAutorize}
+                                />
+                            }
+                        ></Route>
+                    )}
+                    {!loggedIn && (
+                        <Route
+                            path="/signup"
+                            element={
+                                <Register
+                                    handleLogin={handleLogin}
+                                    isSuccess={isSuccess}
+                                    setIsSucces={setIsSucces}
+                                    requestInfo={requestInfo}
+                                    setRequestInfo={setRequestInfo}
+                                    setLoggedIn={setLoggedIn}
+                                    handleAutorize={handleAutorize}
+                                />
+                            }
+                        ></Route>
+                    )}
                     <Route exact path="/" element={<Main />}></Route>
                     <Route
                         path="/movies"
@@ -204,6 +218,8 @@ function App() {
                                 loggedIn={loggedIn}
                                 onCardLike={handleMovieLike}
                                 savedMovies={savedMovies}
+                                isFirstSearch={isFirstSearch}
+                                setIsFirstSearch={setIsFirstSearch}
                             />
                         }
                     ></Route>
@@ -227,6 +243,8 @@ function App() {
                                 handleLogout={handleLogout}
                                 onUpdateUser={handleUpdateUser}
                                 currentUser={currentUser}
+                                requestInfo={requestInfo}
+                                setRequestInfo={setRequestInfo}
                             />
                         }
                     ></Route>
