@@ -3,8 +3,16 @@ import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from "../../utils/Auth";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
+import { badEmail } from "../../utils/constants";
 
-const Register = () => {
+const Register = ({
+    handleLogin,
+    requestInfo,
+    setRequestInfo,
+    setLoggedIn,
+    handleRegister,
+    handleAutorize,
+}) => {
     const navigate = useNavigate();
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     // const nameRegex = '/[a-zа-яёА-ЯЁ]/gi';
@@ -14,17 +22,17 @@ const Register = () => {
         const { email, password, name } = values;
 
         auth.register(email, password, name)
-            .then(() => {
-                // setTooltipSuccess(true)
-                // setInfoTooltipPopupOpen(true)
-                navigate("/movies");
+            .then((res) => {
+                if (res) {
+                    handleAutorize(email, password);
+                    setRequestInfo("");
+                }
             })
             .catch((err) => {
                 if (err.status === 400) {
                     console.log("Некорректно заполнено одно из полей");
                 }
-                // setTooltipSuccess(false)
-                // setInfoTooltipPopupOpen(true)
+                setRequestInfo(badEmail);
             });
     };
 
@@ -85,7 +93,7 @@ const Register = () => {
                     </span>
                 </div>
                 <div className="form__buttons">
-                    <span className="form__request-error"></span>
+                    <span className="form__request-error">{requestInfo}</span>
                     <button
                         className="form__button"
                         type="submit"

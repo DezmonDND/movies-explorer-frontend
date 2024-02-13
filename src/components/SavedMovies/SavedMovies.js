@@ -22,7 +22,7 @@ function SavedMovies({ savedMovies, onCardDelete }) {
                     .includes(searchValue.toLowerCase());
                 return !isFiltred
                     ? searchedMovie
-                    : searchedMovie && movie.duration <= 40;
+                    : (searchedMovie && movie.duration < 40);
             }),
         );
         setSearchSavedMoviesValue(searchValue);

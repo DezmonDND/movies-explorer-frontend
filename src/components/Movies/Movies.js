@@ -47,7 +47,7 @@ function Movies({ onCardLike, savedMovies }) {
                         .includes(searchValue.toLocaleLowerCase());
                 return !isFiltred
                     ? searchedMovie
-                    : searchedMovie && movie.duration <= 40;
+                    : searchedMovie && movie.duration < 40;
             }),
         );
         setSearchValue(searchValue);
@@ -60,17 +60,18 @@ function Movies({ onCardLike, savedMovies }) {
 
     // Загрузить список фильмов, состояние чекбокса и значение поиска из ЛС
     useEffect(() => {
-        if (localStorage.getItem("allMovies")) {
-            const allMovies = JSON.parse(localStorage.getItem("allMovies"));
-            const shortMoviesCheckbox = JSON.parse(
+        if (allMovies.length !== 0) {
+            console.log(allMovies.length);
+            const conservedMovies = JSON.parse(localStorage.getItem("allMovies"));
+            const checkbox = JSON.parse(
                 localStorage.getItem("shortMoviesCheckbox"),
             );
-            const searchValue = JSON.parse(localStorage.getItem("searchValue"));
+            const value = JSON.parse(localStorage.getItem("searchValue"));
 
-            setAllMovies(allMovies);
-            setShortMoviesCheckbox(shortMoviesCheckbox);
-            setSearchValue(searchValue);
-            findMovies(searchValue, shortMoviesCheckbox, allMovies);
+            findMovies(value, checkbox, conservedMovies);
+            setAllMovies(conservedMovies);
+            setShortMoviesCheckbox(checkbox);
+            setSearchValue(value);
         }
     }, [findMovies]);
 

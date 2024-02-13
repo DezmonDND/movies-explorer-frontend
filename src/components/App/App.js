@@ -15,6 +15,7 @@ import { getToken, setToken, removeToken } from "../../utils/token";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import { mainApi } from "../../utils/MainApi";
+import { incorrectPassword } from "../../utils/constants";
 
 function App() {
     const location = useLocation();
@@ -24,6 +25,8 @@ function App() {
     const [currentUser, setCurrentUser] = useState({});
     const [savedMovies, setSavedMovies] = useState([]);
     const [token, setTokenState] = useState(getToken());
+    const [isSuccess, setIsSucces] = useState(true);
+    const [requestInfo, setRequestInfo] = useState("");
 
     const navigate = useNavigate();
 
@@ -32,6 +35,7 @@ function App() {
         if (loggedIn) {
             Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
                 .then(([userData, cardData]) => {
+                    setLoggedIn(true);
                     setCurrentUser(userData);
                     setSavedMovies(cardData);
                 })
@@ -68,8 +72,6 @@ function App() {
                     console.log(`Error! ${e}`);
                 });
         } else {
-            console.log(savedMovies);
-            console.log(data);
             const likedMovie = savedMovies.filter((movie) => {
                 return movie.movieId === data.id;
             });
@@ -85,11 +87,30 @@ function App() {
         }
     }
 
+    // Аутентификация
+    function handleAutorize(email, password) {
+        auth.autorize(email, password)
+            .then((res) => {
+                if (res && res.token) {
+                    handleLogin(res);
+                }
+            })
+            .catch((err) => {
+                if (err.statusCose === 400) {
+                    console.log("Не передано одно из полей");
+                } else if (err.statusCose === 401) {
+                    console.log("Пользователь с email не найден");
+                }
+                setRequestInfo(incorrectPassword);
+            });
+    }
+
     // Авторизация
     function handleLogin(userData) {
         setTokenState(userData.token);
         setToken(userData.token);
         setLoggedIn(true);
+        navigate("/movies");
     }
 
     useEffect(() => {
@@ -150,9 +171,30 @@ function App() {
                 <Routes>
                     <Route
                         path="/signin"
-                        element={<Login handleLogin={handleLogin} />}
+                        element={
+                            <Login
+                                handleLogin={handleLogin}
+                                requestInfo={requestInfo}
+                                setRequestInfo={setRequestInfo}
+                                setLoggedIn={setLoggedIn}
+                                handleAutorize={handleAutorize}
+                            />
+                        }
                     ></Route>
-                    <Route path="/signup" element={<Register />}></Route>
+                    <Route
+                        path="/signup"
+                        element={
+                            <Register
+                                handleLogin={handleLogin}
+                                isSuccess={isSuccess}
+                                setIsSucces={setIsSucces}
+                                requestInfo={requestInfo}
+                                setRequestInfo={setRequestInfo}
+                                setLoggedIn={setLoggedIn}
+                                handleAutorize={handleAutorize}
+                            />
+                        }
+                    ></Route>
                     <Route exact path="/" element={<Main />}></Route>
                     <Route
                         path="/movies"

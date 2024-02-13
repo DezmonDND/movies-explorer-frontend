@@ -4,8 +4,14 @@ import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from "../../utils/Auth";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
+import { incorrectPassword } from "../../utils/constants";
 
-const Login = ({ handleLogin }) => {
+const Login = ({
+    handleLogin,
+    requestInfo,
+    setRequestInfo,
+    handleAutorize,
+}) => {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const navigate = useNavigate();
 
@@ -20,23 +26,7 @@ const Login = ({ handleLogin }) => {
             return;
         }
 
-        auth.autorize(email, password)
-            .then((res) => {
-                if (res && res.token) {
-                    handleLogin(res);
-                    // setUserEmail(email);
-                    navigate("/movies");
-                }
-            })
-            .catch((err) => {
-                if (err.statusCose === 400) {
-                    console.log("Не передано одно из полей");
-                } else if (err.statusCose === 401) {
-                    console.log("Пользователь с email не найден");
-                }
-                // setTooltipSuccess(false)
-                // setInfoTooltipPopupOpen(true)
-            });
+        handleAutorize(email, password);
     };
 
     return (
@@ -82,7 +72,7 @@ const Login = ({ handleLogin }) => {
                 </div>
                 <div className="form__buttons form__buttons_login">
                     <span className="form__request-error form__request-error_type-login">
-                        {}
+                        {requestInfo}
                     </span>
                     <button
                         className="form__button form__button_type-login"
