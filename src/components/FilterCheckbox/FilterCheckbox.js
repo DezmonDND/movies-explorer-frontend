@@ -1,16 +1,17 @@
 import "./FilterCheckbox.css";
 
-function FilterCheckbox({ shortMoviesCheckbox, toggleCheckbox }) {
+function FilterCheckbox({ shortMoviesCheckboxState, toggleCheckbox }) {
     return (
         <div className="checkbox">
             <input
+                name="checkbox"
                 type="checkbox"
-                id="checkbox"
+                id="checkbox1"
                 className="checkbox__switcher"
-                checked={shortMoviesCheckbox}
+                checked={shortMoviesCheckboxState}
                 onChange={toggleCheckbox}
             ></input>
-            <label htmlFor="checkbox"></label>
+            <label htmlFor="checkbox1"></label>
             <p className="checkbox__title">Короткометражки</p>
         </div>
     );

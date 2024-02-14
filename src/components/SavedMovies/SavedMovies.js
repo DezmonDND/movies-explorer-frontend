@@ -17,12 +17,16 @@ function SavedMovies({ savedMovies, onCardDelete }) {
         // Найти фильмы по значению в инпуте и отфильтровать по длине
         setLikedMovies(
             movies.filter((movie) => {
-                const searchedMovie = movie.nameRU
-                    .toLowerCase()
-                    .includes(searchValue.toLowerCase());
+                const searchedMovie =
+                    movie.nameRU
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase()) ||
+                    movie.nameEN
+                        .toLowerCase()
+                        .includes(searchValue.toLocaleLowerCase());
                 return !isFiltred
                     ? searchedMovie
-                    : (searchedMovie && movie.duration < 40);
+                    : searchedMovie && movie.duration < 40;
             }),
         );
         setSearchSavedMoviesValue(searchValue);
@@ -49,8 +53,8 @@ function SavedMovies({ savedMovies, onCardDelete }) {
                     allMovies={savedMovies}
                     getMoviesFromServer={getMoviesFromServer}
                     findMovies={findMovies}
-                    shortMoviesCheckbox={shortSavedMoviesCheckbox}
-                    setShortMoviesCheckbox={setShortSavedMoviesCheckbox}
+                    shortMoviesCheckboxState={shortSavedMoviesCheckbox}
+                    setShortMoviesCheckboxState={setShortSavedMoviesCheckbox}
                     searchValue={searchSavedMoviesValue}
                 ></SearchForm>
                 <MoviesCardList

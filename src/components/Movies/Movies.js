@@ -5,33 +5,37 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { moviesApi } from "../../utils/MoviesApi";
 import Preloader from "../Preloader/Preloader";
 
-function Movies({ onCardLike, savedMovies, isFirstSearch, setIsFirstSearch }) {
+function Movies({
+    savedMovies,
+    isFirstSearch,
+    setIsFirstSearch,
+    onCardLike,
+    onCardDelete,
+}) {
     const [allMovies, setAllMovies] = useState([]);
-    const [shortMoviesCheckbox, setShortMoviesCheckbox] = useState(false);
     const [foundMovies, setFoundMovies] = useState([]);
-    const [searchValue, setSearchValue] = useState("");
+    const [shortMoviesCheckboxState, setShortMoviesCheckboxState] =
+        useState(false);
+    const [searchValueState, setSearchValueState] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     // Получить список фильмов с сервера
     function getMoviesFromServer(searchValue) {
-        if (allMovies.length !==0) {
-            findMovies(searchValue, shortMoviesCheckbox, allMovies);
+        if (allMovies.length !== 0) {
+            findMovies(searchValue, shortMoviesCheckboxState, allMovies);
         } else {
             setIsLoading(true);
             moviesApi
                 .getMovies()
                 .then((movies) => {
                     setAllMovies(movies);
-                    setShortMoviesCheckbox(false);
-                    findMovies(searchValue, shortMoviesCheckbox, movies);
-                    // setIsFirstSearch(false)
+                    setShortMoviesCheckboxState(false);
+                    findMovies(searchValue, shortMoviesCheckboxState, movies);
                 })
                 .catch((e) => {
                     console.log(`Ошибка при загрузке фильмов с сервера! ${e}`);
                 })
-                .finally(() => {
-                    setIsLoading(false);
-                });
+                .finally(() => setIsLoading(false));
         }
     }
 
@@ -51,31 +55,28 @@ function Movies({ onCardLike, savedMovies, isFirstSearch, setIsFirstSearch }) {
                     : searchedMovie && movie.duration < 40;
             }),
         );
-        setSearchValue(searchValue);
+
+        setSearchValueState(searchValue);
 
         // Записать в ЛС массив всех фильмов, значение поиска и состояние чекбокса
         localStorage.setItem("allMovies", JSON.stringify(movies));
-        localStorage.setItem("shortMoviesCheckbox", JSON.stringify(isFiltred));
+        localStorage.setItem("shortMoviesChecked", JSON.stringify(isFiltred));
         localStorage.setItem("searchValue", JSON.stringify(searchValue));
     }, []);
 
     // Загрузить список фильмов, состояние чекбокса и значение поиска из ЛС
     useEffect(() => {
-        if (allMovies.length !==0) {
-            const conservedMovies = JSON.parse(
-                localStorage.getItem("allMovies"),
-            );
-            const checkbox = JSON.parse(
-                localStorage.getItem("shortMoviesCheckbox"),
-            );
-            const value = JSON.parse(localStorage.getItem("searchValue"));
-
-            findMovies(value, checkbox, conservedMovies);
-            setAllMovies(conservedMovies);
-            setShortMoviesCheckbox(checkbox);
-            setSearchValue(value);
+        if (!isFirstSearch) {
+            const movies = JSON.parse(localStorage.allMovies);
+            const checkboxState = JSON.parse(localStorage.shortMoviesChecked);
+            const searchValue = JSON.parse(localStorage.searchValue);
+            
+            setAllMovies(movies);
+            setShortMoviesCheckboxState(checkboxState);
+            setSearchValueState(searchValue);
+            findMovies(searchValue, checkboxState, movies);
         }
-    }, [findMovies]);
+    }, []);
 
     return (
         <main className="movies">
@@ -84,17 +85,21 @@ function Movies({ onCardLike, savedMovies, isFirstSearch, setIsFirstSearch }) {
                     allMovies={allMovies}
                     getMoviesFromServer={getMoviesFromServer}
                     findMovies={findMovies}
-                    shortMoviesCheckbox={shortMoviesCheckbox}
-                    setShortMoviesCheckbox={setShortMoviesCheckbox}
-                    searchValue={searchValue}
-                ></SearchForm>
+                    shortMoviesCheckboxState={shortMoviesCheckboxState}
+                    setShortMoviesCheckboxState={setShortMoviesCheckboxState}
+                    searchValueState={searchValueState}
+                    isFirstSearch={isFirstSearch}
+                    setIsFirstSearch={setIsFirstSearch}
+                />
                 {isLoading && <Preloader></Preloader>}
                 <MoviesCardList
                     savedMovies={savedMovies}
                     foundMovies={foundMovies}
                     onCardLike={onCardLike}
+                    onCardDelete={onCardDelete}
                     isFirstSearch={isFirstSearch}
-                ></MoviesCardList>
+                    setIsFirstSearch={setIsFirstSearch}
+                />
             </div>
         </main>
     );

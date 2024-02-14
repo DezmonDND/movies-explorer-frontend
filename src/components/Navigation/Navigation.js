@@ -6,7 +6,6 @@ import { NavLink, useLocation } from "react-router-dom";
 function Navigation(props) {
     const location = useLocation();
     const { loggedIn } = props;
-    // const activeLink = isActive ? "navigation__link_underline" : "";
 
     return (
         <>

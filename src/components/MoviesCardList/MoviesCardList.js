@@ -20,7 +20,7 @@ import {
 function MoviesCardList(props) {
     const { savedMovies, foundMovies, onCardLike, onCardDelete, isFirstSearch } = props;
     const [showMovies, setShowMovies] = useState(12);
-    const [moreMovies, setMoreMovies] = useState(4);
+    const [moreMovies, setMoreMovies] = useState(3);
     const location = useLocation();
 
     function handleClickMore() {

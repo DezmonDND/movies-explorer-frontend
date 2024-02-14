@@ -1,30 +1,48 @@
 import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function SearchForm({
     getMoviesFromServer,
-    shortMoviesCheckbox,
-    setShortMoviesCheckbox,
+    shortMoviesCheckboxState,
+    setShortMoviesCheckboxState,
+    findMovies,
+    isFirstSearch,
+    setIsFirstSearch,
+    allMovies,
+    searchValueState,
 }) {
-    const { values, handleChange, isValid } = useFormWithValidation();
+    const { values, handleChange, isValid, resetForm, errors } =
+        useFormWithValidation();
+    const location = useLocation();
 
     function toggleCheckbox() {
-        const { movie } = values;
-        if (shortMoviesCheckbox) {
-            setShortMoviesCheckbox(false);
-            getMoviesFromServer(movie || "");
+        if (shortMoviesCheckboxState) {
+            setShortMoviesCheckboxState(false);
+            findMovies(values.search || "", false, allMovies);
         } else {
-            setShortMoviesCheckbox(true);
-            getMoviesFromServer(movie || "");
+            setShortMoviesCheckboxState(true);
+            findMovies(values.search || "", true, allMovies);
         }
     }
 
     function onSubmit(evt) {
         evt.preventDefault();
-        const { movie } = values;
-        getMoviesFromServer(movie);
+        if (isFirstSearch) {
+            setIsFirstSearch(false);
+        } else if (values.search === "") {
+            console.log("1");
+        } else {
+            getMoviesFromServer(evt.target.search.value);
+        }
     }
+
+    useEffect(() => {
+        location.pathname === "/movies" &&
+            resetForm({ search: searchValueState });
+    }, [searchValueState, resetForm, location.pathname]);
 
     return (
         <div className="search">
@@ -32,27 +50,19 @@ function SearchForm({
                 <div className="search__form">
                     <input
                         type="text"
-                        onChange={handleChange}
-                        className="search__input"
+                        name="search"
                         placeholder="Фильм"
-                        name="movie"
-                        required
+                        className="search__input"
+                        value={values.search || ""}
+                        onChange={handleChange}
                     ></input>
-                    <button
-                        className="search__button"
-                        type="submit"
-                        disabled={!isValid}
-                        style={{
-                            backgroundColor: !isValid ? "#F8F8F8" : "",
-                            color: !isValid ? "#C2C2C2" : "",
-                        }}
-                    >
+                    <button className="search__button" type="submit">
                         Найти
                     </button>
                     <span className="search__error"></span>
                 </div>
                 <FilterCheckbox
-                    shortMoviesCheckbox={shortMoviesCheckbox}
+                    shortMoviesCheckboxState={shortMoviesCheckboxState}
                     toggleCheckbox={toggleCheckbox}
                 ></FilterCheckbox>
             </form>

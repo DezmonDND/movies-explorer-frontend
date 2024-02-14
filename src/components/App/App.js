@@ -24,7 +24,7 @@ import {
 function App() {
     const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(undefined); // Чтобы не редиректило при обновлении страницы
-    const [isFirstSearch, setIsFirstSearch] = useState(true);
+    const [isFirstSearch, setIsFirstSearch] = useState(false);
 
     // Данные пользователя
     const [currentUser, setCurrentUser] = useState({});
@@ -140,9 +140,8 @@ function App() {
     function clearStorage() {
         localStorage.removeItem("allMovies");
         localStorage.removeItem("searchValue");
-        localStorage.removeItem("foundMovies");
         localStorage.removeItem("shortMovies");
-        localStorage.removeItem("shortMoviesCheckbox");
+        localStorage.removeItem("shortMoviesChecked");
     }
 
     // Выход
@@ -151,6 +150,7 @@ function App() {
         removeToken();
         clearStorage();
         navigate("/");
+        setIsFirstSearch(true);
     }
 
     // Отмена редиректа в адресной строке при обновлении страницы
