@@ -13,6 +13,10 @@ export const REG_ERROR = "При регистрации пользователя
 export const UPDATE_ERROR = "При обновлении профиля произошла ошибка.";
 export const UPDATE_SUCCESS = "Данные успешно сохранены.";
 
+// Ошибка при происке
+export const REQUEST_ERROR =
+    "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
+
 // Валидация имени и ЭП
 export const REGEX_EMAIL = "^\\S+@\\S+\\.\\S+$";
 export const REGEX_NAME = "^[а-яА-ЯёЁa-zA-Z\\s\\-]+$";
@@ -32,4 +36,3 @@ export const OLD_PHONE_WIDTH_COLUMNS = 5;
 export const BIG_WIDTH_CARDS = 4;
 export const MIDDLE_WIDTH_CARDS = 3;
 export const MOBILE_WIDTH_CARDS = 2;
-export const OLD_PHONE_WIDTH_CARDS = 2;

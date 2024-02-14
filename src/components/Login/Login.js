@@ -1,20 +1,12 @@
 import "../Register/Register.css";
 import "./Login.css";
 import logo from "../../images/logo.svg";
-import { Link, useNavigate } from "react-router-dom";
-import * as auth from "../../utils/Auth";
+import { Link } from "react-router-dom";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
-import { INCORRECT_PASSWORD } from "../../utils/constants";
 import { useEffect } from "react";
 
-const Login = ({
-    handleLogin,
-    requestInfo,
-    setRequestInfo,
-    handleAutorize,
-}) => {
+const Login = ({ requestInfo, setRequestInfo, handleAutorize }) => {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
-    const navigate = useNavigate();
 
     useEffect(() => {
         setRequestInfo("");
@@ -26,8 +18,6 @@ const Login = ({
 
         if (!email || !password) {
             console.log("Необходимо заполнить все поля");
-            // setTooltipSuccess(false)
-            // setInfoTooltipPopupOpen(true)
             return;
         }
 

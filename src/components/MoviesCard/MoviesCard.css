@@ -80,6 +80,23 @@
 }
 
 .movie__like_active:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.movie__like_saved {
+    all: unset;
+    background-image: url(../../images/like_btn_active.svg);
+    background-size: contain;
+    background-position: center;
+    border: none;
+    min-width: 24px;
+    min-height: 24px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+
+.movie__like_saved:hover {
     all: unset;
     background-image: url(../../images/delete_btn.svg);
     background-size: contain;
@@ -152,5 +169,9 @@
 
     .movie__info {
         padding-bottom: 13px;
+    }
+
+    .movie__like_saved {
+        background-image: url(../../images/delete_btn.svg);
     }
 }

@@ -60,7 +60,7 @@ function Navigation(props) {
                         location.pathname,
                     ) && (
                         <NavLink
-                            className={`navigation__link navigation__link_profile ${location.pathname === ("/movies" || "/saved-movies" || "/profile") ? "navigation__link_profile_active" : ""}`}
+                            className={`navigation__link navigation__link_profile ${location.pathname === "/" ? "" : "navigation__link_profile_active"}`}
                             to="/profile"
                         >
                             <span className="navigation__profile-title">

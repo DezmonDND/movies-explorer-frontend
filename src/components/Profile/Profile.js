@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "./Profile.css";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
 import { REGEX_NAME, REGEX_EMAIL } from "../../utils/constants";
@@ -13,9 +13,7 @@ function Profile({
 }) {
     const { values, setValues, handleChange, errors, isValid, setIsValid } =
         useFormWithValidation();
-
     const currentUser = useContext(CurrentUserContext);
-    const [isSuccess, setIsSuccess] = useState(true);
 
     useEffect(() => {
         setRequestInfo('')

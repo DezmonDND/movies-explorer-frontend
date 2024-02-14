@@ -50,6 +50,16 @@ function App() {
         }
     }, [loggedIn]);
 
+    useState(() => {
+        if (
+            !localStorage.shortMoviesChecked ||
+            !localStorage.searchValue ||
+            !localStorage.allMovies
+        ) {
+            setIsFirstSearch(true);
+        }
+    }, []);
+
     // Удалить карточку
     function handleCardDelete(movie) {
         mainApi
@@ -242,7 +252,6 @@ function App() {
                                 loggedIn={loggedIn}
                                 handleLogout={handleLogout}
                                 onUpdateUser={handleUpdateUser}
-                                currentUser={currentUser}
                                 requestInfo={requestInfo}
                                 setRequestInfo={setRequestInfo}
                             />

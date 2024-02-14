@@ -14,42 +14,41 @@ import {
     MOBILE_WIDTH_CARDS,
     OLD_PHONE_WIDTH_SIZE,
     OLD_PHONE_WIDTH_COLUMNS,
-    OLD_PHONE_WIDTH_CARDS,
 } from "../../utils/constants";
 
 function MoviesCardList(props) {
-    const { savedMovies, foundMovies, onCardLike, onCardDelete, isFirstSearch } = props;
-    const [showMovies, setShowMovies] = useState(12);
-    const [moreMovies, setMoreMovies] = useState(3);
+    const {
+        savedMovies,
+        foundMovies,
+        onCardLike,
+        onCardDelete,
+        isFirstSearch,
+    } = props;
+    const [showMovies, setShowMovies] = useState(0);
     const location = useLocation();
-
-    function handleClickMore() {
-        setShowMovies(showMovies + moreMovies);
-    }
-
-    function countMovies() {
-        const windowWidth = window.innerWidth;
-        if (windowWidth >= BIG_WIDTH_SIZE) {
-            setShowMovies(BIG_WIDTH_COLUMNS);
-            setMoreMovies(BIG_WIDTH_CARDS);
-        } else if (windowWidth >= MIDDLE_WIDTH_SIZE) {
-            setShowMovies(MIDDLE_WIDTH_COLUMNS);
-            setMoreMovies(MIDDLE_WIDTH_CARDS);
-        } else if (windowWidth >= MOBILE_WIDTH_SIZE) {
-            setShowMovies(MOBILE_WIDTH_COLUMNS);
-            setMoreMovies(MOBILE_WIDTH_CARDS);
-        } else if (windowWidth >= OLD_PHONE_WIDTH_SIZE) {
-            setShowMovies(OLD_PHONE_WIDTH_COLUMNS);
-            setMoreMovies(OLD_PHONE_WIDTH_CARDS);
-        }
-    }
+    const windowWidth = window.innerWidth;
 
     useEffect(() => {
-        window.addEventListener("resize", countMovies);
-        return () => {
-            window.removeEventListener("resize", countMovies);
-        };
-    }, []);
+        if (windowWidth >= BIG_WIDTH_SIZE) {
+            setShowMovies(BIG_WIDTH_COLUMNS);
+        } else if (windowWidth >= MIDDLE_WIDTH_SIZE) {
+            setShowMovies(MIDDLE_WIDTH_COLUMNS);
+        } else if (windowWidth >= MOBILE_WIDTH_SIZE) {
+            setShowMovies(MOBILE_WIDTH_COLUMNS);
+        } else if (windowWidth >= OLD_PHONE_WIDTH_SIZE) {
+            setShowMovies(OLD_PHONE_WIDTH_COLUMNS);
+        }
+    }, [windowWidth]);
+
+    function showMoreMovies() {
+        if (windowWidth >= BIG_WIDTH_SIZE) {
+            setShowMovies(showMovies + BIG_WIDTH_CARDS);
+        } else if (windowWidth >= MIDDLE_WIDTH_SIZE) {
+            setShowMovies(showMovies + MIDDLE_WIDTH_CARDS);
+        } else {
+            setShowMovies(showMovies + MOBILE_WIDTH_CARDS);
+        }
+    }
 
     return (
         <div className="movies__section">
@@ -78,7 +77,7 @@ function MoviesCardList(props) {
                     <button
                         className="movies__button-more"
                         type="button"
-                        onClick={handleClickMore}
+                        onClick={showMoreMovies}
                     >
                         Ещё
                     </button>

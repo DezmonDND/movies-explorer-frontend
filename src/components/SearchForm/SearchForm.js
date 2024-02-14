@@ -2,7 +2,8 @@ import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function SearchForm({
     getMoviesFromServer,
@@ -17,6 +18,7 @@ function SearchForm({
     const { values, handleChange, isValid, resetForm, errors } =
         useFormWithValidation();
     const location = useLocation();
+    const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
 
     function toggleCheckbox() {
         if (shortMoviesCheckboxState) {
@@ -33,11 +35,16 @@ function SearchForm({
         if (isFirstSearch) {
             setIsFirstSearch(false);
         } else if (values.search === "") {
-            console.log("1");
+            setInfoTooltipPopupOpen(true);
         } else {
             getMoviesFromServer(evt.target.search.value);
         }
     }
+
+    // Закрытие всех попапов
+    const closeAllPopups = () => {
+        setInfoTooltipPopupOpen(false);
+    };
 
     useEffect(() => {
         location.pathname === "/movies" &&
@@ -66,6 +73,11 @@ function SearchForm({
                     toggleCheckbox={toggleCheckbox}
                 ></FilterCheckbox>
             </form>
+            <InfoTooltip
+                isOpen={isInfoTooltipPopupOpen}
+                onClose={closeAllPopups}
+                message={"Введите текст для поиска"}
+            />
         </div>
     );
 }

@@ -1,20 +1,12 @@
 import "./Register.css";
 import logo from "../../images/logo.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as auth from "../../utils/Auth";
 import { useFormWithValidation } from "../FormaValidator/FormaValidator";
 import { BAD_EMAIL, REGEX_EMAIL, REGEX_NAME } from "../../utils/constants";
 import { useEffect } from "react";
 
-const Register = ({
-    handleLogin,
-    requestInfo,
-    setRequestInfo,
-    setLoggedIn,
-    handleRegister,
-    handleAutorize,
-}) => {
-    const navigate = useNavigate();
+const Register = ({ requestInfo, setRequestInfo, handleAutorize }) => {
     const { values, handleChange, errors, isValid } = useFormWithValidation();
 
     useEffect(() => {
