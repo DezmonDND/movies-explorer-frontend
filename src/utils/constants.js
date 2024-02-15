@@ -32,7 +32,11 @@ export const BIG_WIDTH_COLUMNS = 16;
 export const MIDDLE_WIDTH_COLUMNS = 12;
 export const MOBILE_WIDTH_COLUMNS = 8;
 export const OLD_PHONE_WIDTH_COLUMNS = 5;
+
 // Количество карточек
 export const BIG_WIDTH_CARDS = 4;
 export const MIDDLE_WIDTH_CARDS = 3;
 export const MOBILE_WIDTH_CARDS = 2;
+
+// Длительность короткометражек
+export const SHORTS_DURATION = 40;

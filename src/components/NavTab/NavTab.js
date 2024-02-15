@@ -1,5 +1,5 @@
 import "./NavTab.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import profileIconBtn from "../../images/profile.svg";
 import closeBtn from "../../images/burger__close-btn.svg";
 
@@ -18,15 +18,33 @@ function NavTab({ isOpen, onClose }) {
                         alt="Крестик"
                     ></img>
                 </button>
-                <Link className="navtab__link" to="/">
+                <NavLink
+                    className="navtab__link"
+                    to="/"
+                    style={({ isActive }) => ({
+                        borderBottom: isActive ? "1px solid black" : "",
+                    })}
+                >
                     Главная
-                </Link>
-                <Link className="navtab__link" to="/movies">
+                </NavLink>
+                <NavLink
+                    className="navtab__link"
+                    to="/movies"
+                    style={({ isActive }) => ({
+                        borderBottom: isActive ? "1px solid black" : "",
+                    })}
+                >
                     Фильмы
-                </Link>
-                <Link className="navtab__link" to="/saved-movies">
+                </NavLink>
+                <NavLink
+                    className="navtab__link"
+                    to="/saved-movies"
+                    style={({ isActive }) => ({
+                        borderBottom: isActive ? "1px solid black" : "",
+                    })}
+                >
                     Сохранённые фильмы
-                </Link>
+                </NavLink>
                 <Link
                     className="navtab__link navtab__link_profile"
                     to="/profile"

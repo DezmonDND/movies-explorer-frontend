@@ -4,6 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { moviesApi } from "../../utils/MoviesApi";
 import Preloader from "../Preloader/Preloader";
+import { SHORTS_DURATION } from "../../utils/constants";
 
 function Movies({
     savedMovies,
@@ -52,7 +53,7 @@ function Movies({
                         .includes(searchValue.toLocaleLowerCase());
                 return !isFiltred
                     ? searchedMovie
-                    : searchedMovie && movie.duration < 40;
+                    : searchedMovie && movie.duration < SHORTS_DURATION;
             }),
         );
 
@@ -66,7 +67,7 @@ function Movies({
 
     // Загрузить список фильмов, состояние чекбокса и значение поиска из ЛС
     useEffect(() => {
-        if (!isFirstSearch) {
+        if (localStorage.allMovies) {
             const movies = JSON.parse(localStorage.allMovies);
             const checkboxState = JSON.parse(localStorage.shortMoviesChecked);
             const searchValue = JSON.parse(localStorage.searchValue);

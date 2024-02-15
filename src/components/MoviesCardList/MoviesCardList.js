@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import debounce from "lodash.debounce";
 import {
     BIG_WIDTH_SIZE,
     BIG_WIDTH_COLUMNS,
@@ -16,31 +17,19 @@ import {
     OLD_PHONE_WIDTH_COLUMNS,
 } from "../../utils/constants";
 
-function MoviesCardList(props) {
-    const {
-        savedMovies,
-        foundMovies,
-        onCardLike,
-        onCardDelete,
-        isFirstSearch,
-    } = props;
-    const [showMovies, setShowMovies] = useState(0);
+function MoviesCardList({
+    savedMovies,
+    foundMovies,
+    onCardLike,
+    onCardDelete,
+    isFirstSearch,
+}) {
     const location = useLocation();
-    const windowWidth = window.innerWidth;
+    const [showMovies, setShowMovies] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    useEffect(() => {
-        if (windowWidth >= BIG_WIDTH_SIZE) {
-            setShowMovies(BIG_WIDTH_COLUMNS);
-        } else if (windowWidth >= MIDDLE_WIDTH_SIZE) {
-            setShowMovies(MIDDLE_WIDTH_COLUMNS);
-        } else if (windowWidth >= MOBILE_WIDTH_SIZE) {
-            setShowMovies(MOBILE_WIDTH_COLUMNS);
-        } else if (windowWidth >= OLD_PHONE_WIDTH_SIZE) {
-            setShowMovies(OLD_PHONE_WIDTH_COLUMNS);
-        }
-    }, [windowWidth]);
-
-    function showMoreMovies() {
+    // Количество фильмов, отображаемое кнопкой еще
+    function showMoreMoviesButton() {
         if (windowWidth >= BIG_WIDTH_SIZE) {
             setShowMovies(showMovies + BIG_WIDTH_CARDS);
         } else if (windowWidth >= MIDDLE_WIDTH_SIZE) {
@@ -50,9 +39,39 @@ function MoviesCardList(props) {
         }
     }
 
+    // Количество фильмов, отображаемое в блоке результатов
+    function countMovies() {
+        if (windowWidth >= BIG_WIDTH_SIZE) {
+            setShowMovies(BIG_WIDTH_COLUMNS);
+        } else if (windowWidth >= MIDDLE_WIDTH_SIZE) {
+            setShowMovies(MIDDLE_WIDTH_COLUMNS);
+        } else if (windowWidth >= MOBILE_WIDTH_SIZE) {
+            setShowMovies(MOBILE_WIDTH_COLUMNS);
+        } else {
+            setShowMovies(OLD_PHONE_WIDTH_COLUMNS);
+        }
+    }
+
+    useEffect(() => {
+        countMovies();
+    }, [windowWidth]);
+
+    useEffect(() => {
+        // Текущая ширина экрана и таймер для отслеживания изменений
+        const screenSize = debounce(
+            () => setWindowWidth(window.innerWidth),
+            10
+        );
+
+        window.addEventListener("resize", screenSize);
+        return () => {
+            window.removeEventListener("resize", screenSize);
+        };
+    }, []);
+
     return (
         <div className="movies__section">
-            {!isFirstSearch && location.pathname === "/movies" && (
+            {foundMovies.length !==0  && location.pathname === "/movies" && (
                 <ul className="movies__list">
                     {foundMovies.slice(0, showMovies).length !== 0 ? (
                         foundMovies.slice(0, showMovies).map((movie) => (
@@ -77,7 +96,7 @@ function MoviesCardList(props) {
                     <button
                         className="movies__button-more"
                         type="button"
-                        onClick={showMoreMovies}
+                        onClick={showMoreMoviesButton}
                     >
                         Ещё
                     </button>

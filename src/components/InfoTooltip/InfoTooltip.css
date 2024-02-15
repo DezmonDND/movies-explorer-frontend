@@ -25,23 +25,24 @@
 }
 
 .popup__succes {
-    width: 400px;
+    max-width: 560px;
+    width: 100%;
     height: 60px;
     background-color: #ffffff;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .popup__close-btn {
     all: unset;
     background-image: url(../../images/close_icon.svg);
-    width: 32px;
-    height: 32px;
+    width: 22px;
+    height: 22px;
     position: absolute;
-    right: -40px;
-    top: -40px;
+    right: -26px;
+    top: -26px;
     background-size: contain;
     cursor: pointer;
 }
@@ -53,9 +54,9 @@
 
 .popup__succes-text {
     color: #000000;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 33.89px;
     text-align: center;
-    max-width: 358px;
+    margin: 0;
 }

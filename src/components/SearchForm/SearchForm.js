@@ -15,8 +15,7 @@ function SearchForm({
     allMovies,
     searchValueState,
 }) {
-    const { values, handleChange, isValid, resetForm, errors } =
-        useFormWithValidation();
+    const { values, handleChange, resetForm } = useFormWithValidation();
     const location = useLocation();
     const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
 
@@ -32,12 +31,14 @@ function SearchForm({
 
     function onSubmit(evt) {
         evt.preventDefault();
-        if (isFirstSearch) {
-            setIsFirstSearch(false);
-        } else if (values.search === "") {
+        if (allMovies.length === 0) {
+            setIsFirstSearch(true);
+        }
+        // else
+        if (values.search === "" || values.search === undefined) {
             setInfoTooltipPopupOpen(true);
         } else {
-            getMoviesFromServer(evt.target.search.value);
+            getMoviesFromServer(values.search);
         }
     }
 
@@ -76,7 +77,7 @@ function SearchForm({
             <InfoTooltip
                 isOpen={isInfoTooltipPopupOpen}
                 onClose={closeAllPopups}
-                message={"Введите текст для поиска"}
+                message={"Введите название фильма для поиска"}
             />
         </div>
     );

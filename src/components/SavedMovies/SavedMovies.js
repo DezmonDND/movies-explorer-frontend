@@ -1,8 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import { SHORTS_DURATION } from "../../utils/constants";
 
-function SavedMovies({ savedMovies, onCardDelete }) {
+function SavedMovies({
+    savedMovies,
+    onCardDelete,
+    isFirstSearch,
+    setIsFirstSearch,
+}) {
     const [likedMovies, setLikedMovies] = useState(savedMovies);
     const [shortSavedMoviesCheckbox, setShortSavedMoviesCheckbox] =
         useState(false);
@@ -26,8 +32,8 @@ function SavedMovies({ savedMovies, onCardDelete }) {
                         .includes(searchValue.toLocaleLowerCase());
                 return !isFiltred
                     ? searchedMovie
-                    : searchedMovie && movie.duration < 40;
-            }),
+                    : searchedMovie && movie.duration < SHORTS_DURATION;
+            })
         );
         setSearchSavedMoviesValue(searchValue);
     }, []);
@@ -37,7 +43,7 @@ function SavedMovies({ savedMovies, onCardDelete }) {
         findMovies(
             searchSavedMoviesValue,
             shortSavedMoviesCheckbox,
-            savedMovies,
+            savedMovies
         );
     }, [
         savedMovies,
@@ -56,11 +62,15 @@ function SavedMovies({ savedMovies, onCardDelete }) {
                     shortMoviesCheckboxState={shortSavedMoviesCheckbox}
                     setShortMoviesCheckboxState={setShortSavedMoviesCheckbox}
                     searchValue={searchSavedMoviesValue}
+                    isFirstSearch={isFirstSearch}
+                    setIsFirstSearch={setIsFirstSearch}
                 ></SearchForm>
                 <MoviesCardList
                     savedMovies={likedMovies}
                     foundMovies={likedMovies}
                     onCardDelete={onCardDelete}
+                    isFirstSearch={isFirstSearch}
+                    setIsFirstSearch={setIsFirstSearch}
                 ></MoviesCardList>
             </div>
         </main>
