@@ -21,10 +21,13 @@ function MoviesCardList({
     foundMovies,
     onCardLike,
     onCardDelete,
+    isFirstSearch,
 }) {
     const location = useLocation();
     const [showMovies, setShowMovies] = useState(0);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const moviesList = foundMovies.slice(0, showMovies);
+    const [message, setMessage] = useState("");
 
     // Количество фильмов, отображаемое кнопкой еще
     function showMoreMoviesButton() {
@@ -67,12 +70,20 @@ function MoviesCardList({
         };
     }, []);
 
+    useEffect(() => {
+        if (!isFirstSearch && foundMovies.length === 0) {
+            setMessage("Ничего не найдено");
+        } else {
+            setMessage("");
+        }
+    }, [foundMovies, isFirstSearch]);
+
     return (
         <div className="movies__section">
             {foundMovies.length !== 0 && location.pathname === "/movies" && (
                 <ul className="movies__list">
-                    {foundMovies.slice(0, showMovies).length !== 0 ? (
-                        foundMovies.slice(0, showMovies).map((movie) => (
+                    {moviesList.length !== 0 &&
+                        moviesList.map((movie) => (
                             <li className="movies__element" key={movie.id}>
                                 <MoviesCard
                                     savedMovies={savedMovies}
@@ -81,13 +92,11 @@ function MoviesCardList({
                                     onCardDelete={onCardDelete}
                                 ></MoviesCard>
                             </li>
-                        ))
-                    ) : (
-                        <span className="movies__not-found">
-                            Ничего не найдено
-                        </span>
-                    )}
+                        ))}
                 </ul>
+            )}
+            {location.pathname === "/movies" && (
+                <span className="movies__not-found">{message}</span>
             )}
             {location.pathname === "/movies" &&
                 showMovies < foundMovies.length && (

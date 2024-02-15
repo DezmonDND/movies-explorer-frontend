@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { lazy, useCallback, useEffect, useState } from "react";
 import "./Movies.css";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
@@ -13,11 +13,14 @@ function Movies({ savedMovies, onCardLike, onCardDelete }) {
         useState(false);
     const [searchValueState, setSearchValueState] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isFirstSearch, setIsFirstSearch] = useState(true);
 
     // Получить список фильмов с сервера
     function getMoviesFromServer(searchValue) {
         if (allMovies.length !== 0) {
             findMovies(searchValue, shortMoviesCheckboxState, allMovies);
+            setIsFirstSearch(false);
+            localStorage.setItem("isFirstSearch", JSON.stringify(false));
         } else {
             setIsLoading(true);
             moviesApi
@@ -65,10 +68,12 @@ function Movies({ savedMovies, onCardLike, onCardDelete }) {
             const movies = JSON.parse(localStorage.allMovies);
             const checkboxState = JSON.parse(localStorage.shortMoviesChecked);
             const searchValue = JSON.parse(localStorage.searchValue);
+            const isFirstSearch = JSON.parse(localStorage.isFirstSearch);
 
             setAllMovies(movies);
             setShortMoviesCheckboxState(checkboxState);
             setSearchValueState(searchValue);
+            setIsFirstSearch(isFirstSearch);
             findMovies(searchValue, checkboxState, movies);
         }
     }, []);
@@ -90,6 +95,8 @@ function Movies({ savedMovies, onCardLike, onCardDelete }) {
                     foundMovies={foundMovies}
                     onCardLike={onCardLike}
                     onCardDelete={onCardDelete}
+                    isFirstSearch={isFirstSearch}
+                    setIsFirstSearch={setIsFirstSearch}
                 />
             </div>
         </main>

@@ -141,6 +141,7 @@ function App() {
         localStorage.removeItem("searchValue");
         localStorage.removeItem("shortMovies");
         localStorage.removeItem("shortMoviesChecked");
+        localStorage.removeItem("isFirstSearch");
     }
 
     // Выход
