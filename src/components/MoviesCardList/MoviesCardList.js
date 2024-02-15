@@ -13,7 +13,6 @@ import {
     MOBILE_WIDTH_SIZE,
     MOBILE_WIDTH_COLUMNS,
     MOBILE_WIDTH_CARDS,
-    OLD_PHONE_WIDTH_SIZE,
     OLD_PHONE_WIDTH_COLUMNS,
 } from "../../utils/constants";
 
@@ -22,7 +21,6 @@ function MoviesCardList({
     foundMovies,
     onCardLike,
     onCardDelete,
-    isFirstSearch,
 }) {
     const location = useLocation();
     const [showMovies, setShowMovies] = useState(0);
@@ -71,7 +69,7 @@ function MoviesCardList({
 
     return (
         <div className="movies__section">
-            {foundMovies.length !==0  && location.pathname === "/movies" && (
+            {foundMovies.length !== 0 && location.pathname === "/movies" && (
                 <ul className="movies__list">
                     {foundMovies.slice(0, showMovies).length !== 0 ? (
                         foundMovies.slice(0, showMovies).map((movie) => (

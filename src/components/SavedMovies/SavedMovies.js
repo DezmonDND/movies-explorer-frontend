@@ -3,12 +3,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { SHORTS_DURATION } from "../../utils/constants";
 
-function SavedMovies({
-    savedMovies,
-    onCardDelete,
-    isFirstSearch,
-    setIsFirstSearch,
-}) {
+function SavedMovies({ savedMovies, onCardDelete }) {
     const [likedMovies, setLikedMovies] = useState(savedMovies);
     const [shortSavedMoviesCheckbox, setShortSavedMoviesCheckbox] =
         useState(false);
@@ -62,15 +57,11 @@ function SavedMovies({
                     shortMoviesCheckboxState={shortSavedMoviesCheckbox}
                     setShortMoviesCheckboxState={setShortSavedMoviesCheckbox}
                     searchValue={searchSavedMoviesValue}
-                    isFirstSearch={isFirstSearch}
-                    setIsFirstSearch={setIsFirstSearch}
                 ></SearchForm>
                 <MoviesCardList
                     savedMovies={likedMovies}
                     foundMovies={likedMovies}
                     onCardDelete={onCardDelete}
-                    isFirstSearch={isFirstSearch}
-                    setIsFirstSearch={setIsFirstSearch}
                 ></MoviesCardList>
             </div>
         </main>

@@ -24,7 +24,6 @@ import {
 function App() {
     const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(undefined); // Чтобы не редиректило при обновлении страницы
-    const [isFirstSearch, setIsFirstSearch] = useState(false);
 
     // Данные пользователя
     const [currentUser, setCurrentUser] = useState({});
@@ -50,23 +49,13 @@ function App() {
         }
     }, [loggedIn]);
 
-    useState(() => {
-        if (
-            !localStorage.shortMoviesChecked ||
-            !localStorage.searchValue ||
-            !localStorage.allMovies
-        ) {
-            setIsFirstSearch(true);
-        }
-    }, []);
-
     // Удалить карточку
     function handleCardDelete(movie) {
         mainApi
             .deleteMovie(movie._id)
             .then(() => {
                 setSavedMovies((state) =>
-                    state.filter((c) => c._id !== movie._id),
+                    state.filter((c) => c._id !== movie._id)
                 );
             })
             .catch((e) => console.log(`Error! ${e}`));
@@ -95,7 +84,7 @@ function App() {
                 .deleteMovie(movieId)
                 .then(() => {
                     setSavedMovies((state) =>
-                        state.filter((c) => c._id !== movieId),
+                        state.filter((c) => c._id !== movieId)
                     );
                 })
                 .catch((e) => console.log(`Error! ${e}`));
@@ -160,7 +149,6 @@ function App() {
         removeToken();
         clearStorage();
         navigate("/");
-        setIsFirstSearch(true);
     }
 
     // Отмена редиректа в адресной строке при обновлении страницы
@@ -186,7 +174,7 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
             <div className="App">
                 {["/", "/movies", "/saved-movies", "/profile"].includes(
-                    location.pathname,
+                    location.pathname
                 ) && <Header loggedIn={loggedIn}></Header>}
                 <Routes>
                     {!loggedIn && (
@@ -228,8 +216,6 @@ function App() {
                                 loggedIn={loggedIn}
                                 onCardLike={handleMovieLike}
                                 savedMovies={savedMovies}
-                                isFirstSearch={isFirstSearch}
-                                setIsFirstSearch={setIsFirstSearch}
                             />
                         }
                     ></Route>
@@ -260,7 +246,7 @@ function App() {
                     <Route path="*" element={<NotFoundPage />}></Route>
                 </Routes>
                 {["/", "/movies", "/saved-movies"].includes(
-                    location.pathname,
+                    location.pathname
                 ) && <Footer></Footer>}
             </div>
         </CurrentUserContext.Provider>

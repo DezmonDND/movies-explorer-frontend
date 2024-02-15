@@ -10,8 +10,6 @@ function SearchForm({
     shortMoviesCheckboxState,
     setShortMoviesCheckboxState,
     findMovies,
-    isFirstSearch,
-    setIsFirstSearch,
     allMovies,
     searchValueState,
 }) {
@@ -31,10 +29,7 @@ function SearchForm({
 
     function onSubmit(evt) {
         evt.preventDefault();
-        if (allMovies.length === 0) {
-            setIsFirstSearch(true);
-        }
-        // else
+
         if (values.search === "" || values.search === undefined) {
             setInfoTooltipPopupOpen(true);
         } else {

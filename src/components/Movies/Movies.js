@@ -6,13 +6,7 @@ import { moviesApi } from "../../utils/MoviesApi";
 import Preloader from "../Preloader/Preloader";
 import { SHORTS_DURATION } from "../../utils/constants";
 
-function Movies({
-    savedMovies,
-    isFirstSearch,
-    setIsFirstSearch,
-    onCardLike,
-    onCardDelete,
-}) {
+function Movies({ savedMovies, onCardLike, onCardDelete }) {
     const [allMovies, setAllMovies] = useState([]);
     const [foundMovies, setFoundMovies] = useState([]);
     const [shortMoviesCheckboxState, setShortMoviesCheckboxState] =
@@ -54,7 +48,7 @@ function Movies({
                 return !isFiltred
                     ? searchedMovie
                     : searchedMovie && movie.duration < SHORTS_DURATION;
-            }),
+            })
         );
 
         setSearchValueState(searchValue);
@@ -71,7 +65,7 @@ function Movies({
             const movies = JSON.parse(localStorage.allMovies);
             const checkboxState = JSON.parse(localStorage.shortMoviesChecked);
             const searchValue = JSON.parse(localStorage.searchValue);
-            
+
             setAllMovies(movies);
             setShortMoviesCheckboxState(checkboxState);
             setSearchValueState(searchValue);
@@ -89,8 +83,6 @@ function Movies({
                     shortMoviesCheckboxState={shortMoviesCheckboxState}
                     setShortMoviesCheckboxState={setShortMoviesCheckboxState}
                     searchValueState={searchValueState}
-                    isFirstSearch={isFirstSearch}
-                    setIsFirstSearch={setIsFirstSearch}
                 />
                 {isLoading && <Preloader></Preloader>}
                 <MoviesCardList
@@ -98,8 +90,6 @@ function Movies({
                     foundMovies={foundMovies}
                     onCardLike={onCardLike}
                     onCardDelete={onCardDelete}
-                    isFirstSearch={isFirstSearch}
-                    setIsFirstSearch={setIsFirstSearch}
                 />
             </div>
         </main>
