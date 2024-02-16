@@ -7,6 +7,11 @@
     height: 100%;
 }
 
+.movie:hover .movie__like_saved {
+    opacity: 1;
+    transition: opacity .3s;
+}
+
 .movie__trailer-link {
     display: flex;
     text-decoration: none;
@@ -86,7 +91,7 @@
 
 .movie__like_saved {
     all: unset;
-    background-image: url(../../images/delete_btn_disabled.svg);
+    background-image: url(../../images/delete_btn.svg);
     background-size: contain;
     background-position: center;
     border: none;
@@ -94,6 +99,7 @@
     min-height: 24px;
     cursor: pointer;
     background-repeat: no-repeat;
+    opacity: 0;
 }
 
 .movie__like_saved:hover {
@@ -106,8 +112,6 @@
     min-height: 24px;
     cursor: pointer;
     background-repeat: no-repeat;
-    opacity: 0.8;
-    transition: 0.5s;
 }
 
 .movie__delete {
