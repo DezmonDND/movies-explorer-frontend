@@ -68,7 +68,7 @@ function Movies({ savedMovies, onCardLike, onCardDelete }) {
             const movies = JSON.parse(localStorage.allMovies);
             const checkboxState = JSON.parse(localStorage.shortMoviesChecked);
             const searchValue = JSON.parse(localStorage.searchValue);
-            const isFirstSearch = JSON.parse(localStorage.isFirstSearch);
+            const isFirstSearch = JSON.parse(localStorage.isFirstSearch ?? '');
 
             setAllMovies(movies);
             setShortMoviesCheckboxState(checkboxState);

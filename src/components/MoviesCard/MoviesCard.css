@@ -177,5 +177,6 @@
 
     .movie__like_saved {
         background-image: url(../../images/delete_btn.svg);
+        opacity: 1;
     }
 }

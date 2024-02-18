@@ -55,7 +55,7 @@ function MoviesCardList({
 
     useEffect(() => {
         countMovies();
-    }, [windowWidth]);
+    }, [foundMovies, windowWidth]);
 
     useEffect(() => {
         // Текущая ширина экрана и таймер для отслеживания изменений

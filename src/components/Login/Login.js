@@ -10,7 +10,7 @@ const Login = ({ requestInfo, setRequestInfo, handleAutorize }) => {
 
     useEffect(() => {
         setRequestInfo("");
-    }, [setRequestInfo]);
+    }, [setRequestInfo, values]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
