@@ -26,6 +26,7 @@ function Movies({ savedMovies, onCardLike, onCardDelete }) {
             moviesApi
                 .getMovies()
                 .then((movies) => {
+                    localStorage.setItem("isFirstSearch", JSON.stringify(true));
                     setAllMovies(movies);
                     setShortMoviesCheckboxState(false);
                     findMovies(searchValue, shortMoviesCheckboxState, movies);
