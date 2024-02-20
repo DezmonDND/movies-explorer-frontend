@@ -2,14 +2,18 @@
     position: fixed;
     visibility: hidden;
     inset: 0 0;
-    transition: visibility 0s, opacity 0.3s;
+    transition:
+        visibility 0s,
+        opacity 0.3s;
     cursor: pointer;
     z-index: 1;
 }
 
 .navtab_menu-open {
     visibility: visible;
-    transition: visibility 0s, opacity 0.3s;
+    transition:
+        visibility 0s,
+        opacity 0.3s;
 }
 
 .navtab__container {
@@ -20,16 +24,16 @@
     width: 100%;
     height: 100%;
     margin-left: auto;
-    background: #FFFFFF;
+    background: #ffffff;
     transform: translateX(min(520px, 100%));
     transition: transform 0.3s 0s;
     z-index: 10;
-    box-shadow: 0 0 0 9999px rgba(0,0,0,0.3);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
 }
 
 .navtab_menu-open .navtab__container {
     transform: translateX(0);
-    transition: transform 0.3s 0.1s
+    transition: transform 0.3s 0.1s;
 }
 
 .navtab__burger-btn {
@@ -53,7 +57,7 @@
     background-image: url(../../images/burger__close-btn.svg);
     width: 25px;
     height: 25px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     background-position: center;
     background-size: cover;
 }
@@ -104,7 +108,7 @@
 
 .navtab__profile-icon {
     margin: 3px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 50px;
     padding: 7.5px;
     box-shadow: 0 3px 14px 0 #d4d4d4;

@@ -1,6 +1,7 @@
 .movies {
     max-width: 1280px;
     width: 100%;
+    flex: 1 1 auto;
 }
 
 .movies__container {

@@ -1,11 +1,17 @@
-import React from "react";
-import './FilterCheckbox.css';
+import "./FilterCheckbox.css";
 
-function FilterCheckbox() {
+function FilterCheckbox({ shortMoviesCheckboxState, toggleCheckbox }) {
     return (
         <div className="checkbox">
-            <input type="checkbox" id="checkbox" class="checkbox__switcher"></input>
-            <label for="checkbox"></label>
+            <input
+                name="checkbox"
+                type="checkbox"
+                id="checkbox1"
+                className="checkbox__switcher"
+                checked={shortMoviesCheckboxState}
+                onChange={toggleCheckbox}
+            ></input>
+            <label htmlFor="checkbox1"></label>
             <p className="checkbox__title">Короткометражки</p>
         </div>
     );

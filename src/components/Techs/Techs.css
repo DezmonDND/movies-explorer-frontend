@@ -1,7 +1,7 @@
 .techs {
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     padding: 96px 70px;
-    letter-spacing: -.04em;
+    letter-spacing: -0.04em;
 }
 
 .techs__container {
@@ -16,7 +16,7 @@
     line-height: 26.63px;
     border-bottom: 1px solid black;
     padding-bottom: 23px;
-    letter-spacing: -.04em;
+    letter-spacing: -0.04em;
 }
 
 .techs__descriptions {
@@ -33,7 +33,7 @@
     font-size: 50px;
     line-height: 58px;
     margin-bottom: 26px;
-    letter-spacing: -.04em;
+    letter-spacing: -0.04em;
 }
 
 .techs__subtitle-description {
@@ -43,7 +43,7 @@
     line-height: 20px;
     max-width: 460px;
     text-align: center;
-    letter-spacing: -.04em;
+    letter-spacing: -0.04em;
 }
 
 .techs__skiils {
@@ -59,7 +59,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 16.94px;
-    background-color: #E8E8E8;
+    background-color: #e8e8e8;
     min-height: 60px;
     min-width: 90px;
     border-radius: 10px;
@@ -93,7 +93,6 @@
         min-height: 57px;
         min-width: 84px;
     }
-
 }
 
 @media screen and (max-width: 680px) {
