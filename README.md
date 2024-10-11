@@ -1,4 +1,4 @@
-# Фронтэнд дипломнго проекта Фильмы
+![image](https://github.com/user-attachments/assets/fe1496a0-9088-473c-a2c2-ab1f13670578)# Фронтэнд дипломнго проекта Фильмы
 
 Фронтэнд часть дипломной работы. Сделана адаптивная верстка по выбранному макету из Фигмы. В проекте использованы следующие технологии:
 
@@ -44,3 +44,7 @@ npm i
 npm start
 ```
 Проект откроется в дефолтном браузере.
+
+<p align="center">
+  <img src="https://github.com/DezmonDND/movies-explorer-frontend/blob/main/preview.png?raw=true" alt="Превью's custom image"/>
+</p>
